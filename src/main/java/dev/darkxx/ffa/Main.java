@@ -1,5 +1,6 @@
 package dev.darkxx.ffa;
 
+import dev.darkxx.ffa.bstats.Metrics;
 import dev.darkxx.ffa.combat.CombatTagger;
 import dev.darkxx.ffa.commands.SettingsCommand;
 import dev.darkxx.ffa.commands.MessageCommand;
@@ -120,6 +121,11 @@ public final class Main extends JavaPlugin {
         int combatTimer = getConfig().getInt("combat-tagger.combat-timer");
         combatTagger = new CombatTagger(this, combatTimer);
         getServer().getPluginManager().registerEvents(combatTagger, this);
+        // BStats
+        // The plugin is named "xFFA" because the name "FFA" is already taken on BStats. "x" stands for Xyris, which is our organization's name.
+        int pluginId = 21736;
+        Metrics metrics = new Metrics(this, pluginId);
+        metrics.addCustomChart(new Metrics.SimplePie("xffa-chart", () -> "xFFA"));
     }
 
     private void Commands() {
