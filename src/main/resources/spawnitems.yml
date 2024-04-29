@@ -1,0 +1,23 @@
+# Ensure commands don't include "/", for example:
+# - Incorrect: right-click-command: /editkits
+# - Correct: right-click-command: editkits
+
+items:
+  stats:
+    item: 'PAPER'
+    name: '&bStats'
+    slot: 0
+    hide-attributes: true
+    right-click-command: stats
+  leaderboard:
+    item: 'NETHER_STAR'
+    name: '&bLeaderboards'
+    slot: 4
+    hide-attributes: true
+    right-click-command: leaderboards
+  settings:
+    item: 'COMPASS'
+    name: '&bSettings'
+    slot: 8
+    hide-attributes: true
+    right-click-command: settings

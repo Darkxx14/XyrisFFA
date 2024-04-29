@@ -1,0 +1,132 @@
+# Streak settings
+StreakThreshold: 5
+StreakLoseThreshold: 5
+StreakMessage:
+  - " "
+  - "&a%player% &7reached a kill streak of &a%streak%&7!"
+  - " "
+StreakLose:
+  - " "
+  - "&c%player% &7just lost their kill streak of &c%streak%&7!"
+  - " "
+
+# Gameplay settings
+chat-format: "%luckperms_prefix%&7%player%: &f%message%"
+armorStandBlocking: true
+heal_on_kill: true
+disableDeathDrops: true
+smoothSpawnTeleport: true
+launchpad:
+  force: 1.8
+deathMessages:
+  - "&c%victim% &7was defeated by &a%attacker% &7(&c%attacker_health%❤&7)"
+  - "&7You can add more here!"
+
+# Quick Respawn settings
+quick-respawn:
+  enabled: true
+  material: FEATHER
+  item-name: "&aQuick Respawn"
+  lore:
+    - "&7Click to respawn!"
+  click-action: BOTH
+  slot: 1
+  message-type: action bar
+  message: "&aTeleported to your last location"
+
+# Healthbar settings
+healthbar:
+  enabled: false
+  display-name-format: "&#FF7A7A❤"
+  disabled-worlds:
+    - spawn
+
+# Combat Tag settings
+combat-tagger:
+  combat-timer: 10
+  message-type: action bar
+  damage-to-enemy: "&7You attacked &b%victim%&7. Do not log out."
+  damage-from-enemy: "&7You got attacked by &b%attacker%&7. Do not log out."
+  combat-end: "&7You are no longer in combat."
+  action-bar: "&7You're in combat for &b%seconds% &7seconds."
+  disable-commands-message: "&7You cannot use commands while in combat!"
+  whitelisted_commands:
+    - msg
+    - r
+
+# Blacklisted nicknames
+blacklisted-nicknames:
+  - Fuck
+  - Dick
+  - DarkxxIsBad
+  - XyrisPluginsBad
+
+# Messages
+messages:
+  no-permission: "&cNo Permission."
+  teleported-to-spawn: "&7Teleported you to the spawn!"
+  i-want-to-die: "&cYou have committed suicide."
+  now-sitting: "&aYou are now sitting."
+  already-sitting: "&cYou are already sitting."
+  private-messages-disabled: "&c%player% has their Private Messages disabled."
+  no-recent-message: "&cYou have not messaged anyone recently."
+  flightEnabled: "&aYour fly has been enabled."
+  flightDisabled: "&cYour fly has been disabled."
+  nick-blacklisted: "&cThis nickname contains blacklisted words."
+  nick-changed: "&aYour nickname has been set to %nickname%"
+  nick-cleared: "&aYour nickname has been cleared."
+  message_format:
+    sender: "&7[To %recipient%] &b%message%"
+    recipient: "&7[From %sender%] &b%message%"
+  stats:
+    format:
+      - " "
+      - "&b&l%player% &bStats"
+      - " "
+      - "&fKills: &b%kills%"
+      - "&fDeaths: &b%deaths%"
+      - "&fKDR: &b%kdr%"
+      - "&fStreak: &b%streak%"
+      - "&fMax Streak: &b%maxstreak%"
+      - " "
+  ping:
+    format:
+      - " "
+      - "&7%player%'s ping is %color%%ping%ms!"
+      - "&7The ping becomes reliable after being in-game for at least 3 minutes."
+      - " "
+    colors:
+      low:
+      threshold: 50
+      color: "GREEN"
+    medium:
+      threshold: 100
+      color: "YELLOW"
+    high:
+      threshold: 99999
+      color: "RED"
+  rules:
+    format:
+      - " "
+      - "&b&lServer Rules"
+      - " "
+      - "1. Respect other players."
+      - "2. No cheating or exploiting bugs."
+      - "3. No spamming or excessive swearing."
+      - " "
+  broadcast:
+    format:
+      - " "
+      - "&b&l%player% &bis Broadcasting"
+      - "&7%message%"
+      - " "
+
+# Usage Messages
+usage:
+  broadcast: "&cUsage, /broadcast <message>"
+  heal: "&cUsage, /heal <player>"
+  message: "&c/message <player> <message>"
+  nickname: "&cUsage, /nick <nickname> | /nick clear"
+  ping: "&cUsage, /ping [playerName]"
+  reply: "&c/reply <message>"
+  coolarena: "&cUsage, /coolarena <arenaName>"

@@ -1,0 +1,67 @@
+name: FFA
+version: '${project.version}'
+main: dev.darkxx.ffa.Main
+api-version: '1.19'
+softdepend:
+  - PlaceholderAPI
+  - ProtocolLib
+authors: [Darkxx, XyrisPlugins]
+description: A Next Gen 1.19 FFA Core.
+
+commands:
+  ffa:
+    permission: ffa.admin
+  spawn:
+  setspawn:
+    permission: ffa.admin
+  suicide:
+    permission: ffa.commands.suicide
+    aliases:
+      - kms
+      - iwanttodie
+      - killme
+  broadcast:
+    permission: ffa.commands.broadcast
+  rules:
+  sit:
+    permission: ffa.commands.sit
+  stats:
+  heal:
+    permission: ffa.commands.heal
+  message:
+    aliases:
+      - msg
+  reply:
+    aliases:
+      - r
+  fly:
+    permission: ffa.commands.fly
+  ping:
+  nickname:
+    permission: ffa.commands.nickname
+    aliases:
+      - nick
+  settings:
+  coolarena:
+    permission: ffa.coolarena.use
+    aliases:
+      - ca
+
+permissions:
+  ffa.admin:
+    default: op
+  ffa.commands.suicide:
+    default: true
+  ffa.commands.broadcast:
+    default: false
+  ffa.commands.sit:
+    default: false
+  ffa.commands.heal:
+    default: false
+  ffa.commands.fly:
+    default: false
+  ffa.commands.nickname:
+    default: false
+  ffa.coolarena.use:
+    default: false
+
