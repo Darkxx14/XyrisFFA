@@ -53,38 +53,25 @@ public class Placeholders extends PlaceholderExpansion {
             return "";
         }
 
-        switch (identifier.toLowerCase()) {
-            case "kills":
-                return String.valueOf(StatsManager.getCurrentKills(player.getUniqueId()));
-            case "deaths":
-                return String.valueOf(StatsManager.getCurrentDeaths(player.getUniqueId()));
-            case "kdr":
-                return String.valueOf(StatsManager.calculateKDR(player.getUniqueId()));
-            case "streak":
-                return String.valueOf(StatsManager.getCurrentStreak(player.getUniqueId()));
-            case "maxstreak":
-                return String.valueOf(StatsManager.getHighestStreak(player.getUniqueId()));
-            case "lastkit":
-                return Kits.getLastKit(player);
-            case "lastarena":
-                return Arenas.getLastArena(player);
-            case "combat_timer":
+        return switch (identifier.toLowerCase()) {
+            case "kills" -> String.valueOf(StatsManager.getCurrentKills(player.getUniqueId()));
+            case "deaths" -> String.valueOf(StatsManager.getCurrentDeaths(player.getUniqueId()));
+            case "kdr" -> String.valueOf(StatsManager.calculateKDR(player.getUniqueId()));
+            case "streak" -> String.valueOf(StatsManager.getCurrentStreak(player.getUniqueId()));
+            case "maxstreak" -> String.valueOf(StatsManager.getHighestStreak(player.getUniqueId()));
+            case "lastkit" -> Kits.getLastKit(player);
+            case "lastarena" -> Arenas.getLastArena(player);
+            case "combat_timer" -> {
                 List<Combat> combatLogs = CombatTagger.getCombatLogs(player);
-                return String.valueOf(Combat.getPlayerCombatTimer(player, combatLogs));
-            case "nickname":
-                return NickCommand.getNickname(player);
-            case "settings_olddamagetilt":
-                return SettingsManager.getSettingStatus(player, "OldDamageTilt");
-            case "settings_privatemessages":
-                return SettingsManager.getSettingStatus(player, "privateMessages");
-            case "settings_autogg":
-                return SettingsManager.getSettingStatus(player, "autoGG");
-            case "settings_mentionsound":
-                return SettingsManager.getSettingStatus(player, "mentionSound");
-            case "settings_quickrespawn":
-                return SettingsManager.getSettingStatus(player, "toggleQuickRespawn");
-            default:
-                return null;
-        }
+                yield String.valueOf(Combat.getPlayerCombatTimer(player, combatLogs));
+            }
+            case "nickname" -> NickCommand.getNickname(player);
+            case "settings_olddamagetilt" -> SettingsManager.getSettingStatus(player, "OldDamageTilt");
+            case "settings_privatemessages" -> SettingsManager.getSettingStatus(player, "privateMessages");
+            case "settings_autogg" -> SettingsManager.getSettingStatus(player, "autoGG");
+            case "settings_mentionsound" -> SettingsManager.getSettingStatus(player, "mentionSound");
+            case "settings_quickrespawn" -> SettingsManager.getSettingStatus(player, "toggleQuickRespawn");
+            default -> null;
+        };
     }
 }
