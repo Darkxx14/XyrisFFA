@@ -25,7 +25,7 @@ To use the FFA plugin, you need to use Minecraft version 1.19 or higher, Java ve
 * LaunchPads, And More
 ____
 ### Necessary Commands
-Broadcast
+- Broadcast
 - Fly
 - Heal
 - Message
