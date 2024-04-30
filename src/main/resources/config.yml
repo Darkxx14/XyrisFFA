@@ -1,3 +1,5 @@
+prefix: "&b&lFFA &7|&r "
+
 # Streak settings
 StreakThreshold: 5
 StreakLoseThreshold: 5
@@ -16,6 +18,9 @@ armorStandBlocking: true
 heal_on_kill: true
 disableDeathDrops: true
 smoothSpawnTeleport: true
+show-ping-on-right-click:
+  enabled: true
+  message: "&b%clicked_player% &7has &b%ping%&7ms"
 launchpad:
   force: 1.8
 deathMessages:
@@ -89,6 +94,7 @@ messages:
       - "&fStreak: &b%streak%"
       - "&fMax Streak: &b%maxstreak%"
       - " "
+
   ping:
     format:
       - " "
@@ -120,7 +126,6 @@ messages:
       - "&b&l%player% &bis Broadcasting"
       - "&7%message%"
       - " "
-
 # Usage Messages
 usage:
   broadcast: "&cUsage, /broadcast <message>"

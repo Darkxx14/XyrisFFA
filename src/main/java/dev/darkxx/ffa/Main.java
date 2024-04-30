@@ -40,7 +40,7 @@ public final class Main extends JavaPlugin {
 
     private static Main instance;
     private DatabaseManager dbm;
-    public static final String prefix = "&b&lFFA &7|&r ";
+    public static String prefix;
     private FileConfiguration config;
     private Stats stats;
     private SpawnManager spawnManager;
@@ -55,8 +55,9 @@ public final class Main extends JavaPlugin {
         GuiManager.register(this);
         instance = this;
         saveDefaultConfig();
-        DatabaseManager.connect();
         config = getConfig();
+        prefix = config.getString("prefix", "&b&lFFA &7|&r");
+        DatabaseManager.connect();
         kitsFolder = KitManager.createKitsFolder();
         Register();
         Commands();

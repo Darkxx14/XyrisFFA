@@ -2,6 +2,7 @@ package dev.darkxx.ffa.utils;
 
 import dev.darkxx.ffa.Main;
 import dev.darkxx.ffa.api.events.QuickRespawnEvent;
+import dev.darkxx.ffa.commands.PingCommand;
 import dev.darkxx.ffa.settings.SettingsManager;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
@@ -245,6 +246,21 @@ public class Misc implements Listener {
                 if (SettingsManager.hasEnabledSetting(recipient, "mentionSound")) {
                     recipient.playSound(recipient.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1.0f, 1.0f);
                 }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent e) {
+        if (e.getRightClicked() instanceof Player) {
+            Player clickedPlayer = (Player) e.getRightClicked();
+            Player player = e.getPlayer();
+            int ping = PingCommand.getPing(clickedPlayer);
+            String mesg = main.getConfig().getString("show-ping-on-right-click.message")
+                    .replace("%ping%", String.valueOf(ping))
+                    .replace("%clicked_player%", clickedPlayer.getName());
+            if (main.getConfig().getBoolean("show-ping-on-right-click.enabled")) {
+                ActionBarUtil.sendActionBar(player, mesg);
             }
         }
     }

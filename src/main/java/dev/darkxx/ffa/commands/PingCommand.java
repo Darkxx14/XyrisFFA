@@ -57,7 +57,7 @@ public class PingCommand implements CommandExecutor {
         }
     }
 
-    private int getPing(Player player) {
+    public static int getPing(Player player) {
         return player.getPing();
     }
 

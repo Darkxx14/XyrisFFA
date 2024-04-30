@@ -54,6 +54,7 @@ public class Commands implements CommandExecutor, TabCompleter {
             case "reload":
                 Main.getInstance().reloadConfig();
                 Items.loadSpawnItemsConfig();
+                sender.sendMessage(formatColors(" "));
                 sender.sendMessage(formatColors(prefix + "&7" + Main.getInstance().getDescription().getVersion()));
                 sender.sendMessage(formatColors(" "));
                 sender.sendMessage(formatColors("&7Successfully reloaded the configuration files."));
