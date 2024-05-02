@@ -17,6 +17,7 @@ To use the FFA plugin, you need to use Minecraft version 1.19 or higher, Java ve
 * Arena Regeneration (TODO)
 * Multi Worlds (TODO)
 * Advanced Kit System
+* Kit layouts (TODO)
 * Next Generation Settings Menu
 * Spawn/Lobby Items
 * Advanced Stats System Powered by SQLITE and MYSQL (TODO)
