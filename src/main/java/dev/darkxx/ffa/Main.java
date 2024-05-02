@@ -53,10 +53,10 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        instance = this;
         UpdateTask.run();
         PlaceholderAPI();
         GuiManager.register(this);
-        instance = this;
         saveDefaultConfig();
         config = getConfig();
         prefix = config.getString("prefix", "&b&lFFA &7|&r");
