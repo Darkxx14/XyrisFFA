@@ -13,9 +13,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
-import net.minecraft.server.MinecraftServer;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -24,7 +22,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.PotionType;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -37,7 +34,7 @@ import static dev.darkxx.ffa.arenas.Arenas.getLastArena;
 import static dev.darkxx.ffa.kits.Kits.getLastKit;
 import static org.bukkit.Bukkit.getLogger;
 
-public class Misc implements Listener {
+public class MiscListener implements Listener {
 
     private final Main main;
     Scoreboard board;
@@ -46,7 +43,7 @@ public class Misc implements Listener {
     private Set<String> disabledWorlds;
     private String healthBarDisplayNameFormat;
 
-    public Misc(Main main) {
+    public MiscListener(Main main) {
         this.main = main;
         loadConfigSettings();
         if (healthBarEnabled) {
@@ -203,16 +200,16 @@ public class Misc implements Listener {
     }
 
     private void createHealthBar() {
-            ScoreboardManager manager = Bukkit.getScoreboardManager();
-            assert manager != null;
-            board = manager.getNewScoreboard();
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        assert manager != null;
+        board = manager.getNewScoreboard();
 
-            String displayName = formatColors(healthBarDisplayNameFormat);
-            this.objective = this.board.registerNewObjective("healthBar", "health");
-            this.objective.setDisplayName(displayName);
-            this.objective.setDisplaySlot(DisplaySlot.BELOW_NAME);
+        String displayName = formatColors(healthBarDisplayNameFormat);
+        this.objective = this.board.registerNewObjective("healthBar", "health");
+        this.objective.setDisplayName(displayName);
+        this.objective.setDisplaySlot(DisplaySlot.BELOW_NAME);
 
-            Bukkit.getOnlinePlayers().forEach(this::updateHealthBar);
+        Bukkit.getOnlinePlayers().forEach(this::updateHealthBar);
     }
 
     private void updateHealthBar(Player player) {

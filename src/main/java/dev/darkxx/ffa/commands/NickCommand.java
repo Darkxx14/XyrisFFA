@@ -73,9 +73,6 @@ public class NickCommand implements CommandExecutor {
     }
 
     private void saveNickname(UUID playerId, String nickname) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
                 NicknameSetEvent setEvent = new NicknameSetEvent(playerId, nickname);
                 Bukkit.getServer().getPluginManager().callEvent(setEvent);
                 if (setEvent.isCancelled()) {
@@ -88,8 +85,6 @@ public class NickCommand implements CommandExecutor {
                     main.getLogger().warning("Could not save nickname data to nickname-data.yml " + e.getMessage());
                 }
             }
-        }.runTaskAsynchronously(main);
-    }
 
     public static String getNickname(Player player) {
         String nickname = dataConfig.getString(player.getUniqueId().toString());
@@ -97,9 +92,6 @@ public class NickCommand implements CommandExecutor {
     }
 
     private void clearNickname(Player player) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
                 NicknameClearEvent clearEvent = new NicknameClearEvent(player);
                 Bukkit.getServer().getPluginManager().callEvent(clearEvent);
                 if (clearEvent.isCancelled()) {
@@ -115,8 +107,6 @@ public class NickCommand implements CommandExecutor {
                     main.getLogger().warning("Could not save nickname data to nickname-data.yml " + e.getMessage());
                 }
             }
-        }.runTaskAsynchronously(main);
-    }
 
     private boolean isBlacklisted(String nickname) {
         for (String word : blacklist) {

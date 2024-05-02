@@ -23,6 +23,13 @@ show-ping-on-right-click:
   message: "&b%clicked_player% &7has &b%ping%&7ms"
 launchpad:
   force: 1.8
+npcpush:
+  enabled-world: ffa
+  materials:
+    above-block: DEAD_HORN_CORAL_FAN
+    below-block: GRASS_BLOCK
+    forces:
+      multiplier: -1.0
 deathMessages:
   - "&c%victim% &7was defeated by &a%attacker% &7(&c%attacker_health%❤&7)"
   - "&7You can add more here!"

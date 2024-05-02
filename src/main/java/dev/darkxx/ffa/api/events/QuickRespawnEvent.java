@@ -51,7 +51,7 @@ public class QuickRespawnEvent extends Event implements Cancellable {
      */
     public ItemStack getItem() {
         return item;
-    }
+}
 
     /**
      * Gets the last arena the player was in before quick respawning.

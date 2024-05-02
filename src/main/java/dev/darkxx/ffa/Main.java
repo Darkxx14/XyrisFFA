@@ -24,13 +24,15 @@ import dev.darkxx.ffa.settings.OldDamageTilt;
 import dev.darkxx.ffa.spawnitems.Items;
 import dev.darkxx.ffa.stats.Stats;
 import dev.darkxx.ffa.expansion.Placeholders;
-import dev.darkxx.ffa.utils.Misc;
+import dev.darkxx.ffa.tasks.UpdateTask;
+import dev.darkxx.ffa.utils.MiscListener;
 import dev.darkxx.ffa.utils.gui.GuiManager;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
+
 
 import java.io.File;
 import java.util.regex.Matcher;
@@ -51,6 +53,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        UpdateTask.run();
         PlaceholderAPI();
         GuiManager.register(this);
         instance = this;
@@ -107,8 +110,8 @@ public final class Main extends JavaPlugin {
         // Stats
         stats = new Stats(config);
         getServer().getPluginManager().registerEvents(stats, this);
-        // Misc - Utils
-        Misc misc = new Misc(this);
+        // MiscListener - Utils
+        MiscListener misc = new MiscListener(this);
         getServer().getPluginManager().registerEvents(misc, this);
         // Spawn
         spawnManager = new SpawnManager();

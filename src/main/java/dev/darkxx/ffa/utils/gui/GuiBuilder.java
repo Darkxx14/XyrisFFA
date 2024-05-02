@@ -1,6 +1,7 @@
 package dev.darkxx.ffa.utils.gui;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -97,6 +98,14 @@ public class GuiBuilder implements InventoryHolder {
     public void setItems(int slotFrom, int slotTo, ItemStack item, Consumer<InventoryClickEvent> handler) {
         for (int i = slotFrom; i <= slotTo; i++) {
             setItem(i, item, handler);
+        }
+    }
+
+    public void fillEmptySlots(ItemStack fillerItem) {
+        for (int i = 0; i < this.inventory.getSize(); i++) {
+            if (this.inventory.getItem(i) == null || this.inventory.getItem(i).getType() == Material.AIR) {
+                setItem(i, fillerItem);
+            }
         }
     }
 

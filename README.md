@@ -15,6 +15,7 @@ To use the FFA plugin, you need to use Minecraft version 1.19 or higher, Java ve
 * PlaceholderAPI Support
 * Guilds (TODO)
 * Arena Regeneration (TODO)
+* Multi Worlds (TODO)
 * Advanced Kit System
 * Next Generation Settings Menu
 * Spawn/Lobby Items

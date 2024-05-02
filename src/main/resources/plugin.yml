@@ -47,6 +47,9 @@ commands:
     aliases:
       - ca
 
+  beast:
+  speed:
+  axe:
 permissions:
   ffa.admin:
     default: op

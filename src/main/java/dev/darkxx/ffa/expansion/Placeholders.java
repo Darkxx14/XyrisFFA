@@ -48,8 +48,11 @@ public class Placeholders extends PlaceholderExpansion {
                 String regionName = identifier.replace("players_", "");
                 int playerCount = WorldGuardUtils.getPlayerCountInRegion(regionName);
                 return String.valueOf(playerCount);
+            } else if (identifier.startsWith("isbusy_")) {
+                String regionName = identifier.replace("isbusy_", "");
+                return WorldGuardUtils.checkArenaStatus(regionName);
             }
-        } else if (identifier.startsWith("players_")) {
+        } else if (identifier.startsWith("players_") || identifier.startsWith("isbusy_")) {
             return "";
         }
 

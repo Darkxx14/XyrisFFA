@@ -49,4 +49,20 @@ public class WorldGuardUtils {
         }
         return false;
     }
+
+    /**
+     * Checks if a given arena is considered busy based on the number of players inside.
+     *
+     * @param regionName the name of the WorldGuard region representing the arena
+     * @return a String indicating whether the arena is busy or empty
+     */
+    public static String checkArenaStatus(String regionName) {
+        int playerCount = getPlayerCountInRegion(regionName);
+
+        if (playerCount >= 8) {
+            return " &7(Busy)";
+        } else {
+            return "";
+        }
+    }
 }

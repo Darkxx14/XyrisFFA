@@ -4,7 +4,7 @@ import dev.darkxx.ffa.Main;
 import dev.darkxx.ffa.api.events.TeleportToSpawnEvent;
 import dev.darkxx.ffa.settings.SettingsManager;
 import dev.darkxx.ffa.spawnitems.Items;
-import dev.darkxx.ffa.utils.Misc;
+import dev.darkxx.ffa.utils.MiscListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -24,7 +24,7 @@ import java.io.IOException;
 
 import static dev.darkxx.ffa.Main.formatColors;
 import static dev.darkxx.ffa.Main.prefix;
-import static dev.darkxx.ffa.utils.Misc.createQuickRespawnItem;
+import static dev.darkxx.ffa.utils.MiscListener.createQuickRespawnItem;
 
 public class SpawnManager implements Listener {
 
@@ -67,7 +67,7 @@ public class SpawnManager implements Listener {
                 return;
             }
             p.teleport(tspawnLocation);
-            Misc.heal(p);
+            MiscListener.heal(p);
             Items.giveSpawnItems(p);
             if (main.getConfig().getBoolean("smoothSpawnTeleport")) {
                 Bukkit.getScheduler().runTaskLater(main, () -> {
@@ -81,7 +81,7 @@ public class SpawnManager implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        Misc.heal(player);
+        MiscListener.heal(player);
         teleportToSpawn(player);
         Items.giveSpawnItems(player);
     }
@@ -90,7 +90,7 @@ public class SpawnManager implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         ItemStack quickRespawnItem = createQuickRespawnItem();
-        Misc.heal(player);
+        MiscListener.heal(player);
         teleportToSpawn(player);
         Items.giveSpawnItems(player);
         boolean quickRespawnEnabled = main.getConfig().getBoolean("quick-respawn.enabled");
@@ -99,7 +99,7 @@ public class SpawnManager implements Listener {
             if (quickRespawnEnabled) {
                 if (quickRespawnItem != null) {
                     Bukkit.getScheduler().runTaskLater(main, () -> {
-                        Misc.giveQuickRespawn(player, quickRespawnItem, quickRespawnSlot);
+                        MiscListener.giveQuickRespawn(player, quickRespawnItem, quickRespawnSlot);
                     }, 2);
                 } else {
                     player.sendMessage(formatColors("&cFailed to create quick respawn item. Please check your configuration."));

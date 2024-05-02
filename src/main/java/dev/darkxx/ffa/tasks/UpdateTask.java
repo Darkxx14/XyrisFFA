@@ -1,0 +1,44 @@
+package dev.darkxx.ffa.tasks;
+
+import dev.darkxx.ffa.Main;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.protocol.BasicHttpContext;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+public class UpdateTask {
+
+    public static void run() {
+        try {
+            String remoteVersion = fetchRemoteVersion();
+            if (remoteVersion != null) {
+                String pluginVersion = Main.getInstance().getDescription().getVersion();
+                if (!remoteVersion.equals(pluginVersion)) {
+                    Main.getInstance().getLogger().info("The plugin is not up to date, please update to the latest version: " + remoteVersion);
+                } else {
+                    Main.getInstance().getLogger().info("The plugin is up to date.");
+                }
+            } else {
+                Main.getInstance().getLogger().warning("Failed to fetch remote version. Please check your internet connection.");
+            }
+        } catch (IOException | URISyntaxException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private static String fetchRemoteVersion() throws IOException, URISyntaxException {
+        try (CloseableHttpClient httpClient = HttpClientBuilder.create().build()) {
+            HttpGet httpGet = new HttpGet();
+            httpGet.setURI(new URI("https://darkxx.xyz/minecraft/ffa/version.txt"));
+            HttpResponse httpResponse = httpClient.execute(httpGet, new BasicHttpContext());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
+            return reader.readLine();
+        }
+    }
+}
