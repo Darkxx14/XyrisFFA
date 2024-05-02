@@ -40,6 +40,24 @@ ___
 
 Everything is editable via the `config.yml` file.
 
+## Placeholders
+- %ffa_kills% | Returns the kills of a player.
+- %ffa_deaths% | Returns the deaths of a player.
+- %ffa_kdr% | Returns the KDR of a player.
+- %ffa_streak% | Returns the kill streak of a player.
+- %ffa_maxstreak% | Returns the max kill streak of a player.
+- %ffa_combat_timer% | Returns the combat timer of a player.
+- %ffa_nickname% | Returns the nickname of a player.
+
+### Utility Placeholders
+- %ffa_player_<RegionName>% | Returns the player count of the specified WorldGuard region.
+- %ffa_isbusy_<RegionName>% | Checks if the specified WorldGuard region has 8+ players; if yes, return "[Busy]".
+- %ffa_settings_olddamagetilt% | Returns the OldDamageTilt setting status of a player.
+- %ffa_settings_privatemessages% | Returns the PrivateMessages setting status of a player.
+- %ffa_settings_autogg% | Returns the AutoGG setting status of a player.
+- %ffa_settings_mentionsound% | Returns the MentionSound setting status of a player.
+- %ffa_settings_quickrespawn% | Returns the QuickRespawn setting status of a player.
+
 ## Reporting Issues
 Please feel free to report any glitches or bugs via our [Discord server](https://discord.gg/XBmrFsg5eR).
 
