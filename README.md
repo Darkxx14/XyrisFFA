@@ -19,7 +19,7 @@ To use the FFA plugin, you need to use Minecraft version 1.19 or higher, Java ve
 * Advanced Kit System
 * Next Generation Settings Menu
 * Spawn/Lobby Items
-* Advanced Stats System Powered by SQLITE
+* Advanced Stats System Powered by SQLITE and MYSQL (TODO)
 * WorldGuard Integration
 * Health Indicators
 * Quick Respawn
@@ -51,7 +51,7 @@ To compile the FFA plugin, follow these steps:
 2. When running BuildTools, it will automatically add the necessary dependencies (CraftBukkit/Bukkit) to your local Maven repository.
 3. Compile the project using the command `mvn clean package`. The output plugin JAR file will be located in the `target/` directory.
 
-Note: Java 21 is required to build FFA.
+Note: Java 17 is required to build FFA.
 
 ### License
 The FFA plugin is licensed under [GNU General Public License](https://github.com/Darkxx14/FFA?tab=GPL-3.0-1-ov-file) (GPL).
