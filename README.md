@@ -68,7 +68,7 @@ To get the FFA plugin, Purchase it for a small fee of **$0.99** from our [Discor
 
 ## Compiling
 To compile the FFA plugin, follow these steps:
-1. Use [BuildTools by SpigotMC](https://www.spigotmc.org/wiki/buildtools/) to build CraftBukkit version 1.19.4, which is supported by FFA plugin.
+1. Use [BuildTools by SpigotMC](https://www.spigotmc.org/wiki/buildtools/) to build CraftBukkit version 1.20.4.
 2. When running BuildTools, it will automatically add the necessary dependencies (CraftBukkit/Bukkit) to your local Maven repository.
 3. Compile the project using the command `mvn clean package`. The output plugin JAR file will be located in the `target/` directory.
 
