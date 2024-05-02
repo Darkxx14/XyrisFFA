@@ -54,7 +54,6 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        UpdateTask.run();
         PlaceholderAPI();
         GuiManager.register(this);
         saveDefaultConfig();
@@ -98,7 +97,7 @@ public final class Main extends JavaPlugin {
         if (Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")) {
             new OldDamageTilt(this);
         } else {
-            getLogger().severe("ProtocolLib not found. Some features may be disabled: [OldDamageTilt.class], [null]");
+            Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&cProtocolLib not found. Some features may be disabled. [OldDamageTilt setting], [none]"));
         }
         // SpawnItems
         new Items(this);
@@ -127,9 +126,9 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(combatTagger, this);
         // BStats
         // The plugin is named "xFFA" because the name "FFA" is already taken on BStats. "x" stands for Xyris, which is our organization's name.
-        int pluginId = 21736;
-        Metrics metrics = new Metrics(this, pluginId);
+        Metrics metrics = new Metrics(this, 21736);
         metrics.addCustomChart(new Metrics.SimplePie("xffa-chart", () -> "xFFA"));
+        UpdateTask.run();
     }
 
     private void Commands() {
