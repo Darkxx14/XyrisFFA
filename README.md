@@ -29,7 +29,7 @@ ___
 * Kit layouts (TODO)
 * Next Generation Settings Menu
 * Spawn/Lobby Items
-* Advanced Stats System Powered by SQLITE and MYSQL (TODO)
+* Advance Stats System, with a feature where adminstrators can edit player's stats
 * WorldGuard Integration
 * Health Indicators
 * Quick Respawn
