@@ -61,8 +61,8 @@ Everything is editable via the `config.yml` file.
 ### Utility Placeholders
 - %ffa_lastkit% | Returns the name of the last kit the player had.
 - %ffa_lastarena% | Returns the name of the last arena the player was in.
-- %ffa_player_<RegionName>% | Returns the player count of the specified WorldGuard region.
-- %ffa_isbusy_<RegionName>% | Checks if the specified WorldGuard region has 8+ players; if yes, return "[Busy]".
+- %ffa_player_RegionName% | Returns the player count of the specified WorldGuard region.
+- %ffa_isbusy_RegionName% | Checks if the specified WorldGuard region has 8+ players; if yes, return "[Busy]".
 - %ffa_settings_olddamagetilt% | Returns the OldDamageTilt setting status of a player.
 - %ffa_settings_privatemessages% | Returns the PrivateMessages setting status of a player.
 - %ffa_settings_autogg% | Returns the AutoGG setting status of a player.
