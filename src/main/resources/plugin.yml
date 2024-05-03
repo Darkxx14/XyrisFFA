@@ -5,6 +5,7 @@ api-version: '1.19'
 softdepend:
   - PlaceholderAPI
   - ProtocolLib
+  - FastAsyncWorldEdit
 authors: [Darkxx, XyrisPlugins]
 description: A Next Gen 1.19 FFA Core.
 
