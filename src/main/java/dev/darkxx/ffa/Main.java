@@ -20,6 +20,8 @@ import dev.darkxx.ffa.kits.KitManager;
 import dev.darkxx.ffa.lobby.VoidListener;
 import dev.darkxx.ffa.lobby.SpawnCommands;
 import dev.darkxx.ffa.lobby.SpawnManager;
+import dev.darkxx.ffa.regeneration.RegenerationImpl;
+import dev.darkxx.ffa.regeneration.command.RegenerationCommand;
 import dev.darkxx.ffa.settings.OldDamageTilt;
 import dev.darkxx.ffa.spawnitems.Items;
 import dev.darkxx.ffa.stats.Stats;
@@ -70,6 +72,7 @@ public final class Main extends JavaPlugin {
         DatabaseManager.disconnect();
         HandlerList.unregisterAll(this);
         getServer().getScheduler().cancelTasks(this);
+        RegenerationImpl.saveAll();
     }
 
     private void PlaceholderAPI() {
@@ -94,11 +97,6 @@ public final class Main extends JavaPlugin {
 
 
     private void Register() {
-        if (Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")) {
-            new OldDamageTilt(this);
-        } else {
-            Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&cProtocolLib not found. Some features may be disabled. [OldDamageTilt setting], [none]"));
-        }
         // SpawnItems
         new Items(this);
         // Database
@@ -128,6 +126,21 @@ public final class Main extends JavaPlugin {
         // The plugin is named "xFFA" because the name "FFA" is already taken on BStats. "x" stands for Xyris, which is our organization's name.
         Metrics metrics = new Metrics(this, 21736);
         metrics.addCustomChart(new Metrics.SimplePie("xffa-chart", () -> "xFFA"));
+        // ProtocolLib
+        if (Bukkit.getPluginManager().isPluginEnabled("ProtocolLib")) {
+            new OldDamageTilt(this);
+        } else {
+            Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&7ProtocolLib not found. Some features may be disabled. [OldDamageTilt setting], [none]"));
+        }
+        // Regeneration
+        if (Bukkit.getPluginManager().isPluginEnabled("FastAsyncWorldEdit")) {
+            getCommand("regeneration").setExecutor(new RegenerationCommand());
+            getCommand("regeneration").setTabCompleter(new RegenerationCommand());
+            RegenerationImpl.loadAll();
+        } else {
+            Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&7FastAsyncWorldEdit not found, Regeneration will not work."));
+        }
+        // Updater
         UpdateTask.run();
     }
 

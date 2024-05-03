@@ -11,6 +11,8 @@ description: A Next Gen 1.19 FFA Core.
 commands:
   ffa:
     permission: ffa.admin
+  regeneration:
+    permission: ffa.admin
   spawn:
   setspawn:
     permission: ffa.admin
