@@ -14,7 +14,16 @@ To use the FFA plugin, you need to use Minecraft version 1.19 or higher, Java ve
 * Customizable Death Messages
 * PlaceholderAPI Support
 * Guilds (TODO)
-* Arena Regeneration (TODO)
+* Arena Regeneration
+___
+  **How to use this?**
+  
+  1. Make sure to have FastAsyncWorldEdit installed on your server.
+  2. Use the command `/regeneration create MyArena`.
+  3. Restart the server, and set the corners of the arena via `/regeneration corner1` and `/regeneration corner2`.
+  4. Finally, use the command `/regeneration start MyArena`.
+  5. You're done! You can now use `/regeneration regenerate MyArena`.
+___
 * Multi Worlds (TODO)
 * Advanced Kit System
 * Kit layouts (TODO)
