@@ -1,4 +1,4 @@
-// Credits to VelocityArenas (Manere)
+// Credits to VelocityArenas for some methods.
 
 package dev.darkxx.ffa.regeneration;
 
