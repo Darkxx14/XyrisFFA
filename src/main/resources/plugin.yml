@@ -49,10 +49,6 @@ commands:
     permission: ffa.coolarena.use
     aliases:
       - ca
-
-  beast:
-  speed:
-  axe:
 permissions:
   ffa.admin:
     default: op
