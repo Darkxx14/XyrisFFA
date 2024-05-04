@@ -109,6 +109,13 @@ public class MiscListener implements Listener {
         String playerName = player.getName();
         String kit = getLastKit(player);
         String arena = getLastArena(player);
+        QuickRespawnEvent onQuickR = new QuickRespawnEvent(player, item, arena, kit);
+        Bukkit.getServer().getPluginManager().callEvent(onQuickR);
+
+        if (onQuickR.isCancelled()) {
+            return;
+        }
+
         if (!kit.equals("none") && !arena.equals("none")) {
             String kitCmd = "ffa kits give " + playerName + " " + kit;
             String arenaCmd = "ffa arenas warp " + playerName + " " + arena;
@@ -125,8 +132,6 @@ public class MiscListener implements Listener {
             } else {
                 getLogger().severe("Unknown message type specified in configuration " + messageType);
             }
-            QuickRespawnEvent onQuickR = new QuickRespawnEvent(player, item, arena, kit);
-            Bukkit.getServer().getPluginManager().callEvent(onQuickR);
         }
     }
 

@@ -90,13 +90,13 @@ public class KitManager {
     }
 
     public static void giveKit(Player player, String kitName) {
-        File kitsFolder = createKitsFolder();
-        File kitFile = new File(kitsFolder, kitName + ".yml");
         KitGiveEvent kitGiveEvent = new KitGiveEvent(player, kitName);
         Bukkit.getServer().getPluginManager().callEvent(kitGiveEvent);
         if (kitGiveEvent.isCancelled()) {
             return;
         }
+        File kitsFolder = createKitsFolder();
+        File kitFile = new File(kitsFolder, kitName + ".yml");
         if (kitFile.exists()) {
             try {
                 FileConfiguration kitConfig = YamlConfiguration.loadConfiguration(kitFile);
