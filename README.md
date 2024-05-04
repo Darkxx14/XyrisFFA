@@ -14,13 +14,22 @@ To use the FFA plugin, you need to use Minecraft version 1.19 or higher, Java ve
 * Customizable Death Messages
 * PlaceholderAPI Support
 * Guilds (TODO)
-* Arena Regeneration (TODO)
+* Arena Regeneration
+___
+  **How to use this?**
+  
+  1. Make sure to have FastAsyncWorldEdit installed on your server.
+  2. Use the command `/regeneration create MyArena`.
+  3. Restart the server, and set the corners of the arena via `/regeneration corner1` and `/regeneration corner2`.
+  4. Finally, use the command `/regeneration start MyArena`.
+  5. You're done! You can now use `/regeneration regenerate MyArena`.
+___
 * Multi Worlds (TODO)
 * Advanced Kit System
 * Kit layouts (TODO)
 * Next Generation Settings Menu
 * Spawn/Lobby Items
-* Advanced Stats System Powered by SQLITE and MYSQL (TODO)
+* Advance Stats System, with a feature where adminstrators can edit player's stats
 * WorldGuard Integration
 * Health Indicators
 * Quick Respawn
@@ -52,8 +61,8 @@ Everything is editable via the `config.yml` file.
 ### Utility Placeholders
 - %ffa_lastkit% | Returns the name of the last kit the player had.
 - %ffa_lastarena% | Returns the name of the last arena the player was in.
-- %ffa_player_<RegionName>% | Returns the player count of the specified WorldGuard region.
-- %ffa_isbusy_<RegionName>% | Checks if the specified WorldGuard region has 8+ players; if yes, return "[Busy]".
+- %ffa_player_RegionName% | Returns the player count of the specified WorldGuard region.
+- %ffa_isbusy_RegionName% | Checks if the specified WorldGuard region has 8+ players; if yes, return "[Busy]".
 - %ffa_settings_olddamagetilt% | Returns the OldDamageTilt setting status of a player.
 - %ffa_settings_privatemessages% | Returns the PrivateMessages setting status of a player.
 - %ffa_settings_autogg% | Returns the AutoGG setting status of a player.
