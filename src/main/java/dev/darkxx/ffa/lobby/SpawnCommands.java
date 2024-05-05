@@ -22,18 +22,17 @@ public class SpawnCommands implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             return true;
         }
-        Player player = (Player) sender;
-        if (label.equalsIgnoreCase("setspawn")) {
+        if (label.equalsIgnoreCase("setspawn") || label.equalsIgnoreCase("ffa:setspawn")){
             if (!player.isOp()) {
                 player.sendMessage(formatColors("&cYou don't have permission to use this command."));
                 return true;
             }
             spawnManager.setSpawn(player);
             return true;
-        } else if (label.equalsIgnoreCase("spawn")) {
+        } else if (label.equalsIgnoreCase("spawn") || label.equalsIgnoreCase("ffa:spawn")) {
             SpawnManager.teleportToSpawn(player);
             String message = Main.getInstance().getConfig().getString("messages.teleported-to-spawn", "&7Teleported you to the spawn!");
             player.sendMessage(formatColors(message));
