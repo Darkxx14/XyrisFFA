@@ -1,5 +1,16 @@
-# FFA
-
+<h1 align="center">FFA</h1>
+<p align="center">
+   <a href="https://www.codefactor.io/repository/github/darkxx14/ffa" alt="CodeFactor Score">
+        <img src="https://www.codefactor.io/repository/github/darkxx14/ffa/badge"/>
+    </a>
+     <a href="https://bstats.org/plugin/bukkit/xFFA" alt="bstats servers">
+        <img src="https://img.shields.io/bstats/servers/21736?color=brightgreen"/>
+    </a>
+     <a href="https://bstats.org/plugin/bukkit/xFFA" alt="bstats players">
+        <img src="https://img.shields.io/bstats/players/21736?color=brightgreen"/>
+    </a>
+    </p>
+    
 ## Overview
 
 FFA is a next-generation plugin designed for PvP/FFA servers, offering a robust API and a bunch of features.
