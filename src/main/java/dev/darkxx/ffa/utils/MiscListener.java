@@ -1,9 +1,11 @@
 package dev.darkxx.ffa.utils;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import dev.darkxx.ffa.Main;
 import dev.darkxx.ffa.api.events.QuickRespawnEvent;
 import dev.darkxx.ffa.commands.PingCommand;
 import dev.darkxx.ffa.settings.SettingsManager;
+import dev.darkxx.ffa.tasks.UpdateTask;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -30,6 +32,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import java.util.*;
 
 import static dev.darkxx.ffa.Main.formatColors;
+import static dev.darkxx.ffa.Main.prefix;
 import static dev.darkxx.ffa.arenas.Arenas.getLastArena;
 import static dev.darkxx.ffa.kits.Kits.getLastKit;
 import static org.bukkit.Bukkit.getLogger;
@@ -183,8 +186,17 @@ public class MiscListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
+        Player player = e.getPlayer();
+        if (UpdateTask.isOutdated) {
+            if (player.isOp()) {
+                player.sendMessage(formatColors(" "));
+                player.sendMessage(formatColors(prefix));
+                player.sendMessage(formatColors("&7Hey, seems like FFA plugin is outdated,"));
+                player.sendMessage(formatColors("&7please upgrade the plugin to the latest version v" + UpdateTask.latestVersion + "."));
+                player.sendMessage(formatColors(" "));
+            }
+        }
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), () -> {
-            Player player = e.getPlayer();
             SettingsManager.ensurePlayerSettings(player);
             if (healthBarEnabled && !isWorldDisabled(player.getWorld())) {
                 updateHealthBar(player);

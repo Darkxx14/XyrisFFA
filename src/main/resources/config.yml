@@ -94,7 +94,6 @@ messages:
       - "&fStreak: &b%streak%"
       - "&fMax Streak: &b%maxstreak%"
       - " "
-
   ping:
     format:
       - " "

@@ -196,7 +196,6 @@ public class RegenerationImpl {
             forwardExtentCopy.setCopyingBiomes(true);
             forwardExtentCopy.setCopyingEntities(false);
             Operations.complete(forwardExtentCopy);
-
             try (ClipboardWriter writer = BuiltInClipboardFormat.FAST.getWriter(Files.newOutputStream(schem.toPath()))) {
                 writer.write(clipboard);
             }

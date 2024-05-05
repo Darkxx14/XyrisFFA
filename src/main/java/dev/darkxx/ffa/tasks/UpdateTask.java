@@ -1,5 +1,6 @@
 package dev.darkxx.ffa.tasks;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import dev.darkxx.ffa.Main;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -19,15 +20,21 @@ import static dev.darkxx.ffa.Main.prefix;
 
 public class UpdateTask {
 
+    public static boolean isOutdated;
+    public static int latestVersion;
+
     public static void run() {
         try {
             String remoteVersion = fetchRemoteVersion();
             if (remoteVersion != null) {
+                latestVersion = Integer.parseInt(remoteVersion.replaceAll("[^0-9]", ""));
                 String pluginVersion = Main.getInstance().getDescription().getVersion();
                 if (!remoteVersion.equals(pluginVersion)) {
                     Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&cThe plugin is not up to date, please update to the latest version, v" + remoteVersion));
+                    isOutdated = true;
                 } else {
                     Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&aThe plugin is up to date."));
+                    isOutdated = false;
                 }
             } else {
                 Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&cFailed to fetch remote version. Please check your internet connection."));

@@ -95,7 +95,6 @@ public final class Main extends JavaPlugin {
         }
     }
 
-
     private void Register() {
         // SpawnItems
         new Items(this);

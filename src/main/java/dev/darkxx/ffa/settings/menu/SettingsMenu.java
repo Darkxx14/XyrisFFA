@@ -60,7 +60,7 @@ public class SettingsMenu extends GuiBuilder {
                 SettingsManager.toggleSetting(player, "privateMessages");
                 String updatedStatus = SettingsManager.getSettingStatus(player, "privateMessages");
                 ItemMeta meta = togglePM.getItemMeta();
-                meta.setLore(Arrays.asList(("&7Toggle your private messages (PM)"), formatColors("  "), formatColors("&7Status: " + updatedStatus)));
+                meta.setLore(Arrays.asList(formatColors("&7Toggle your private messages (PM)"), formatColors("  "), formatColors("&7Status: " + updatedStatus)));
                 togglePM.setItemMeta(meta);
                 player.getOpenInventory().setItem(12, togglePM);
                 player.playSound(player.getLocation(), Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.0f);
@@ -78,7 +78,7 @@ public class SettingsMenu extends GuiBuilder {
                 SettingsManager.toggleSetting(player, "autoGG");
                 String updatedStatus = SettingsManager.getSettingStatus(player, "autoGG");
                 ItemMeta meta = toggleGG.getItemMeta();
-                meta.setLore(Arrays.asList(("&7Send a message 'gg' automatically when killed someone"), formatColors("  "), formatColors("&7Status: " + updatedStatus)));
+                meta.setLore(Arrays.asList(formatColors("&7Send a message 'gg' automatically when killed someone"), formatColors("  "), formatColors("&7Status: " + updatedStatus)));
                 toggleGG.setItemMeta(meta);
                 player.getOpenInventory().setItem(13, toggleGG);
                 player.playSound(player.getLocation(), Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.0f);
@@ -96,7 +96,7 @@ public class SettingsMenu extends GuiBuilder {
                 SettingsManager.toggleSetting(player, "mentionSound");
                 String updatedStatus = SettingsManager.getSettingStatus(player, "mentionSound");
                 ItemMeta meta = toggleMention.getItemMeta();
-                meta.setLore(Arrays.asList(("&7Toggle the sound when you are mentioned in the chat"), formatColors("  "), formatColors("&7Status: " + updatedStatus)));
+                meta.setLore(Arrays.asList(formatColors("&7Toggle the sound when you are mentioned in the chat"), formatColors("  "), formatColors("&7Status: " + updatedStatus)));
                 toggleMention.setItemMeta(meta);
                 player.getOpenInventory().setItem(14, toggleMention);
                 player.playSound(player.getLocation(), Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.0f);
@@ -114,7 +114,7 @@ public class SettingsMenu extends GuiBuilder {
                 SettingsManager.toggleSetting(player, "toggleQuickRespawn");
                 String updatedStatus = SettingsManager.getSettingStatus(player, "toggleQuickRespawn");
                 ItemMeta meta = toggleQuickRespawn.getItemMeta();
-                meta.setLore(Arrays.asList(("&7Toggle to get a quick respawn item on death"), formatColors("  "), formatColors("&7Status: " + updatedStatus)));
+                meta.setLore(Arrays.asList(formatColors("&7Toggle to get a quick respawn item on death"), formatColors("  "), formatColors("&7Status: " + updatedStatus)));
                 toggleQuickRespawn.setItemMeta(meta);
                 player.getOpenInventory().setItem(15, toggleQuickRespawn);
                 player.playSound(player.getLocation(), Sound.UI_LOOM_TAKE_RESULT, 1.0f, 1.0f);
