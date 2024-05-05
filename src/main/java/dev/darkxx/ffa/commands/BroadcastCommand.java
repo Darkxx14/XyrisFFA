@@ -50,7 +50,7 @@ public class BroadcastCommand implements CommandExecutor {
             return true;
         }
 
-        List<String> broadcastMessageList = config.getStringList("messages.broadcast-message");
+        List<String> broadcastMessageList = config.getStringList("messages.broadcast.format");
         if (broadcastMessageList.isEmpty()) {
             sender.sendMessage(formatColors("&cThe broadcast message is empty."));
             return true;
