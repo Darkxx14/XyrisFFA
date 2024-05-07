@@ -61,6 +61,8 @@ public class CombatTagger implements Listener {
 
         Player attacker = (Player) event.getDamager();
         Player victim = (Player) event.getEntity();
+
+
         startCombat(attacker, victim);
     }
 

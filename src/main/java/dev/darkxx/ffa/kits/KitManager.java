@@ -45,23 +45,23 @@ public class KitManager {
         File kitFile = new File(kitsFolder, kitName + ".yml");
         try {
             kitFile.createNewFile();
-            FileConfiguration kitConfig = YamlConfiguration.loadConfiguration(kitFile);
+            FileConfiguration kits = YamlConfiguration.loadConfiguration(kitFile);
             if (sender instanceof Player) {
                 Player player = (Player) sender;
 
                 // Save inventory
-                kitConfig.set("inventory", player.getInventory().getContents());
-                kitConfig.set("armor", player.getInventory().getArmorContents());
-                kitConfig.set("offhand", player.getInventory().getItemInOffHand());
+                kits.set("inventory", player.getInventory().getContents());
+                kits.set("armor", player.getInventory().getArmorContents());
+                kits.set("offhand", player.getInventory().getItemInOffHand());
 
                 // Save active potion effects
                 Collection<PotionEffect> activeEffects = player.getActivePotionEffects();
                 for (PotionEffect effect : activeEffects) {
-                    kitConfig.set("effects." + effect.getType().getName() + ".duration", effect.getDuration());
-                    kitConfig.set("effects." + effect.getType().getName() + ".amplifier", effect.getAmplifier());
+                    kits.set("effects." + effect.getType().getName() + ".duration", effect.getDuration());
+                    kits.set("effects." + effect.getType().getName() + ".amplifier", effect.getAmplifier());
                 }
             }
-            kitConfig.save(kitFile);
+            kits.save(kitFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,21 +71,6 @@ public class KitManager {
         File kitFile = new File(Main.getInstance().getKitsFolder(), kitName + ".yml");
         if (kitFile.exists()) {
             kitFile.delete();
-        }
-    }
-
-    public static void listKits(CommandSender sender) {
-        File kitsFolder = Main.getInstance().getKitsFolder();
-        File[] kitFiles = kitsFolder.listFiles();
-        if (kitFiles != null) {
-            sender.sendMessage(formatColors("\n"));
-            sender.sendMessage(formatColors("&b&lFFA &8| &7Kits"));
-            sender.sendMessage(formatColors("\n"));
-            for (File kitFile : kitFiles) {
-                String kitName = kitFile.getName().replace(".yml", "");
-                sender.sendMessage(formatColors("&b• &7" + kitName));
-                sender.sendMessage(formatColors("\n"));
-            }
         }
     }
 
@@ -131,17 +116,37 @@ public class KitManager {
         }
     }
 
+    public static void listKits(CommandSender sender) {
+        File kitsFolder = Main.getInstance().getKitsFolder();
+        File[] kitFiles = kitsFolder.listFiles();
+        if (kitFiles != null) {
+            sender.sendMessage(formatColors("\n"));
+            sender.sendMessage(formatColors("&b&lFFA &8| &7Kits"));
+            sender.sendMessage(formatColors("\n"));
+            for (File kitFile : kitFiles) {
+                if (kitFile.isFile()) {
+                    String kitName = kitFile.getName().replace(".yml", "");
+                    sender.sendMessage(formatColors("&b• &7" + kitName));
+                    sender.sendMessage(formatColors("\n"));
+                }
+            }
+        }
+    }
+
     public static List<String> getKitNames() {
         List<String> kitNames = new ArrayList<>();
         File[] kitFiles = Main.getInstance().getKitsFolder().listFiles();
         if (kitFiles != null) {
             for (File kitFile : kitFiles) {
-                String kitName = kitFile.getName().replace(".yml", "");
-                kitNames.add(kitName);
+                if (kitFile.isFile()) {
+                    String kitName = kitFile.getName().replace(".yml", "");
+                    kitNames.add(kitName);
+                }
             }
         }
         return kitNames;
     }
+
     public static boolean isKitExisting(String kitName) {
         File kitFile = new File(Main.getKitsFolder(), kitName + ".yml");
         return kitFile.exists();
