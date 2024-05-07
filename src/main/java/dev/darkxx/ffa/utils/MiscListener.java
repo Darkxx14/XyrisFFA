@@ -202,6 +202,15 @@ public class MiscListener implements Listener {
                 updateHealthBar(player);
             }
         });
+        String joinMsg = Main.getInstance().getConfig().getString("join-message");
+        e.setJoinMessage(formatColors(PlaceholderAPI.setPlaceholders(player, joinMsg)));
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent e) {
+        Player player = e.getPlayer();
+        String quitMsg = Main.getInstance().getConfig().getString("quit-message");
+        e.setQuitMessage(formatColors(PlaceholderAPI.setPlaceholders(player, quitMsg)));
     }
 
     @EventHandler
