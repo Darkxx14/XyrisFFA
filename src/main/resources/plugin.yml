@@ -6,7 +6,9 @@ softdepend:
   - PlaceholderAPI
   - ProtocolLib
   - FastAsyncWorldEdit
-authors: [Darkxx, XyrisPlugins]
+authors:
+  - Darkxx
+  - XyrisPlugins
 description: A Next Gen 1.19 FFA Core.
 
 commands:
@@ -55,15 +57,15 @@ permissions:
   ffa.commands.suicide:
     default: true
   ffa.commands.broadcast:
-    default: false
+    default: op
   ffa.commands.sit:
-    default: false
+    default: true
   ffa.commands.heal:
-    default: false
+    default: op
   ffa.commands.fly:
-    default: false
+    default: op
   ffa.commands.nickname:
-    default: false
+    default: true
   ffa.coolarena.use:
-    default: false
+    default: true
 

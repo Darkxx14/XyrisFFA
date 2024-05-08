@@ -25,6 +25,7 @@ import static org.bukkit.Bukkit.getServer;
 
 public class Items {
     private static Main main;
+
     private static FileConfiguration spawnItemsConfig;
 
     public Items(Main plugin) {
@@ -56,6 +57,7 @@ public class Items {
             int slot = getSpawnItemsConfig().getInt(path + ".slot");
             boolean hideAttributes = getSpawnItemsConfig().getBoolean(path + ".hide-attributes");
             String rightClickCommand = getSpawnItemsConfig().getString(path + ".right-click-command");
+            assert materialName != null;
             Material material = Material.matchMaterial(materialName);
             if (material == null) {
                 main.getLogger().warning("Invalid material for item " + itemKey + ": " + materialName);
@@ -77,28 +79,6 @@ public class Items {
             }, 1);
         }
     }
-/*
-    public static ItemStack createQuickRespawnItem() {
-        ItemStack itemStack = new ItemStack(Material.FEATHER);
-        ItemMeta meta = itemStack.getItemMeta();
-        if (meta != null) {
-            meta.setDisplayName("§aQuick Respawn");
-            List<String> lore = new ArrayList<>();
-            lore.add("§7- Click to respawn");
-            lore.add("§7- in the area you died");
-            meta.setLore(lore);
-            meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-            itemStack.setItemMeta(meta);
-        }
-        return itemStack;
-    }
-
-
-    public static void giveQuickRespawn(Player player, ItemStack itemStack, int slot) {
-        Inventory playerInventory = player.getInventory();
-        playerInventory.setItem(slot, itemStack);
-    }
- */
 
     public static void sendInvalidCommandMessage(@NotNull CommandSender sender) {
         sender.sendMessage(formatColors("\n"));

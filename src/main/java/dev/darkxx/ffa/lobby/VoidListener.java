@@ -16,8 +16,7 @@ public class VoidListener implements Listener {
 
     @EventHandler
     public void onPlayerDamage(EntityDamageEvent event) {
-        if (event.getEntity() instanceof Player) {
-            Player victim = (Player) event.getEntity();
+        if (event.getEntity() instanceof Player victim) {
             if (event.getCause() == EntityDamageEvent.DamageCause.VOID) {
                 event.setCancelled(true);
                 SpawnManager.teleportToSpawn(victim);

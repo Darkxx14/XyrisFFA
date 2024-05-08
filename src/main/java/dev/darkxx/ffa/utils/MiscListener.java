@@ -1,6 +1,5 @@
 package dev.darkxx.ffa.utils;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud;
 import dev.darkxx.ffa.Main;
 import dev.darkxx.ffa.api.events.QuickRespawnEvent;
 import dev.darkxx.ffa.commands.PingCommand;
@@ -202,14 +201,14 @@ public class MiscListener implements Listener {
                 updateHealthBar(player);
             }
         });
-        String joinMsg = Main.getInstance().getConfig().getString("join-message");
+        String joinMsg = Main.getInstance().getConfig().getString("join-message", "&7%player_name% Joined.");
         e.setJoinMessage(formatColors(PlaceholderAPI.setPlaceholders(player, joinMsg)));
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent e) {
         Player player = e.getPlayer();
-        String quitMsg = Main.getInstance().getConfig().getString("quit-message");
+        String quitMsg = Main.getInstance().getConfig().getString("quit-message", "&7%player_name% Left.");
         e.setQuitMessage(formatColors(PlaceholderAPI.setPlaceholders(player, quitMsg)));
     }
 

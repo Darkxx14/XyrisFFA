@@ -29,7 +29,7 @@ public class Stats implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player victim = event.getEntity();
         CompletableFuture.runAsync(() -> {
-            if (victim.getKiller() != null) {
+            if (victim.getKiller() != null && !victim.getKiller().equals(victim)) {
                 Player attacker = victim.getKiller();
                 int currentStreak = StatsManager.getCurrentStreak(attacker.getUniqueId());
                 currentStreak++;

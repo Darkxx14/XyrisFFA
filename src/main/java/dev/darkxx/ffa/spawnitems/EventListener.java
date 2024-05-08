@@ -13,6 +13,7 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class EventListener implements Listener {
     private Main main;
+
     public EventListener(Main main) {
         this.main = main;
     }
@@ -27,10 +28,12 @@ public class EventListener implements Listener {
         }
 
         ItemMeta meta = item.getItemMeta();
+        assert meta != null;
         if (!meta.getPersistentDataContainer().has(new NamespacedKey(main, "right-click-command"), PersistentDataType.STRING)) { return;
         }
 
         String command = meta.getPersistentDataContainer().get(new NamespacedKey(main, "right-click-command"), PersistentDataType.STRING);
+        assert command != null;
         Bukkit.dispatchCommand(event.getPlayer(), command);
         event.setCancelled(true);
     }
@@ -40,6 +43,7 @@ public class EventListener implements Listener {
         ItemStack item = event.getItemDrop().getItemStack();
         if (item.hasItemMeta()) {
             ItemMeta meta = item.getItemMeta();
+            assert meta != null;
             if (meta.getPersistentDataContainer().has(new NamespacedKey(main, "right-click-command"), PersistentDataType.STRING)) {
                 event.setCancelled(true);
             }
