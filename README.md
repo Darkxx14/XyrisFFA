@@ -45,7 +45,11 @@ ___
 * Health Indicators
 * Quick Respawn
 * LaunchPads, And More
+
+## Addon(s)
+* Kit Layouts - Let your server's players save a custom kit layout for a kit (recommended for practice servers). **$2.99**
 ____
+
 ### Necessary Commands
 - Broadcast
 - Fly
