@@ -53,6 +53,7 @@ public class RegenerationCommand implements CommandExecutor, TabCompleter {
                 arena = new RegenerationImpl(arenaName, null, null);
                 arena.save();
                 RegenerationImpl.saveAll();
+                RegenerationImpl.loadAll();
                 RegenerationImpl.arenas().add(arena);
                 sender.sendMessage(Main.formatColors(prefix + "&7Arena " + arenaName + " has been successfully created."));
                 break;
