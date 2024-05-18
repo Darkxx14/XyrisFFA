@@ -37,7 +37,6 @@ ___
 ___
 * Multi Worlds (TODO)
 * Advanced Kit System
-* Kit layouts (TODO)
 * Next Generation Settings Menu
 * Spawn/Lobby Items
 * Advance Stats System, with a feature where adminstrators can edit player's stats
