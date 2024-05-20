@@ -1,5 +1,5 @@
 name: FFA
-version: '${project.version}'
+version: '1.0.0'
 main: dev.darkxx.ffa.Main
 api-version: '1.19'
 softdepend:
