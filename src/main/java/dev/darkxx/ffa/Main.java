@@ -26,6 +26,7 @@ import dev.darkxx.ffa.settings.OldDamageTilt;
 import dev.darkxx.ffa.spawnitems.Items;
 import dev.darkxx.ffa.stats.Stats;
 import dev.darkxx.ffa.expansion.Placeholders;
+import dev.darkxx.ffa.tasks.ClipboardCleaner;
 import dev.darkxx.ffa.tasks.UpdateTask;
 import dev.darkxx.ffa.utils.MiscListener;
 import dev.darkxx.ffa.utils.gui.GuiManager;
@@ -37,6 +38,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -141,6 +143,10 @@ public final class Main extends JavaPlugin {
         }
         // Updater
         UpdateTask.run();
+        // Clipboard Cleaner
+        long delay = 0L;
+        long period = 10800L * 20L;
+        new ClipboardCleaner().runTaskTimer(this, delay, period);
     }
 
     private void Commands() {
