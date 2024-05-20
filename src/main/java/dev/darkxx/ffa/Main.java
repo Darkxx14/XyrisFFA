@@ -146,7 +146,7 @@ public final class Main extends JavaPlugin {
         // Clipboard Cleaner
         long delay = 0L;
         long period = 10800L * 20L;
-        new ClipboardCleaner().runTaskTimer(this, delay, period);
+        new ClipboardCleaner().runTaskTimerAsynchronously(this, delay, period);
     }
 
     private void Commands() {
