@@ -25,5 +25,8 @@ replay_pid*
 
 /shelf/
 /workspace.xml
-.idea/
+.idea
 .paper-nms
+.gradle
+..gradle
+.output
