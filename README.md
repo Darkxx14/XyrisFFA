@@ -87,15 +87,7 @@ Everything is editable via the `config.yml` file.
 Please feel free to report any glitches or bugs via our [Discord server](https://discord.gg/XBmrFsg5eR).
 
 ## Download
-To get the FFA plugin, Purchase it for a small fee of **$0.99** from our [Discord server](https://discord.gg/XBmrFsg5eR). Alternatively, compile it yourself using the provided guide below.
-
-## Compiling
-To compile the FFA plugin, follow these steps:
-1. Use [BuildTools by SpigotMC](https://www.spigotmc.org/wiki/buildtools/) to build CraftBukkit version 1.20.4.
-2. When running BuildTools, it will automatically add the necessary dependencies (CraftBukkit/Bukkit) to your local Maven repository.
-3. Compile the project using the command `mvn clean package`. The output plugin JAR file will be located in the `target/` directory.
-
-Note: Java 17 is required to build FFA.
+To get the FFA plugin, Purchase it from our [BuiltByBit](https://builtbybit.com/resources/xyris-ffa.44950/) page. Alternatively, compile it yourself.
 
 ### License
 The FFA plugin is licensed under [GNU General Public License](https://github.com/Darkxx14/FFA?tab=GPL-3.0-1-ov-file) (GPL).
