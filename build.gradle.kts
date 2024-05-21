@@ -35,6 +35,7 @@ repositories {
 
 dependencies {
     implementation("com.zaxxer:HikariCP:5.1.0")
+    implementation("org.apache.httpcomponents:httpmime:4.5.6")
     compileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
     paperweight.paperDevBundle("1.20.4-R0.1-SNAPSHOT")
     compileOnly("com.comphenix.protocol:ProtocolLib:5.1.0")
