@@ -87,7 +87,7 @@ Everything is editable via the `config.yml` file.
 Please feel free to report any glitches or bugs via our [Discord server](https://discord.gg/XBmrFsg5eR).
 
 ## Download
-To get the FFA plugin, Purchase it from our [BuiltByBit]([https://discord.gg/XBmrFsg5eR](https://builtbybit.com/resources/xyris-ffa.44950/)) page. Alternatively, compile it yourself.
+To get the FFA plugin, Purchase it from our [BuiltByBit](https://builtbybit.com/resources/xyris-ffa.44950/) page. Alternatively, compile it yourself.
 
 ### License
 The FFA plugin is licensed under [GNU General Public License](https://github.com/Darkxx14/FFA?tab=GPL-3.0-1-ov-file) (GPL).
