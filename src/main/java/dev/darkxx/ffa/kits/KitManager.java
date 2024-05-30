@@ -94,6 +94,7 @@ public class KitManager {
                     player.getInventory().setContents(((List<ItemStack>) inventory).toArray(new ItemStack[0]));
                     player.getInventory().setArmorContents(((List<ItemStack>) armor).toArray(new ItemStack[0]));
                     player.getInventory().setItemInOffHand(offhand);
+                    player.getActivePotionEffects().clear();
 
                     if (kitConfig.contains("effects")) {
                         for (String effectName : kitConfig.getConfigurationSection("effects").getKeys(false)) {
