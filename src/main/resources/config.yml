@@ -99,19 +99,9 @@ messages:
   ping:
     format:
       - " "
-      - "&7%player%'s ping is %color%%ping%ms!"
+      - "&7%player%'s ping is %ping%ms!"
       - "&7The ping becomes reliable after being in-game for at least 3 minutes."
       - " "
-    colors:
-      low:
-      threshold: 50
-      color: "GREEN"
-    medium:
-      threshold: 100
-      color: "YELLOW"
-    high:
-      threshold: 99999
-      color: "RED"
   rules:
     format:
       - " "

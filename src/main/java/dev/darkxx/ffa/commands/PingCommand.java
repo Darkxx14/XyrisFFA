@@ -17,11 +17,9 @@ public class PingCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             return true;
         }
-
-        Player player = (Player) sender;
 
         if (args.length == 0) {
             sendPingInfo(player, player);
@@ -43,15 +41,13 @@ public class PingCommand implements CommandExecutor {
 
     private void sendPingInfo(Player sender, Player target) {
         int ping = getPing(target);
-        ChatColor color = getColorForPing(ping);
 
         List<String> messages = Main.getInstance().getConfig().getStringList("messages.ping.format");
-        String otherPlayer = target.getName() + "'s";
+        String otherPlayer = target.getName();
 
         for (String message : messages) {
-            message = message.replace("%player%", sender.equals(target) ? "Your" : otherPlayer);
+            message = message.replace("%player%", sender.equals(target) ? "Your" : otherPlayer + "'s");
             message = message.replace("%ping%", Integer.toString(ping));
-            message = message.replace("%color%", color.toString());
 
             sender.sendMessage(formatColors(message));
         }
@@ -59,21 +55,5 @@ public class PingCommand implements CommandExecutor {
 
     public static int getPing(Player player) {
         return player.getPing();
-    }
-
-    private ChatColor getColorForPing(int ping) {
-        ChatColor color = ChatColor.GRAY;
-
-        for (String category : Main.getInstance().getConfig().getConfigurationSection("messages.ping.format.colors").getKeys(false)) {
-            int threshold = Main.getInstance().getConfig().getInt("messages.ping.format.colors." + category + ".threshold");
-            String colorCode = Main.getInstance().getConfig().getString("messages.ping.format.colors." + category + ".color");
-
-            if (ping < threshold) {
-                color = ChatColor.valueOf(colorCode);
-                break;
-            }
-        }
-
-        return color;
     }
 }

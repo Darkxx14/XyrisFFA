@@ -14,11 +14,9 @@ public class SitCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             return true;
         }
-
-        Player player = (Player) sender;
 
         if (!player.hasPermission("ffa.commands.sit")) {
             String noPermission = Main.getInstance().getConfig().getString("messages.no-permission", "&cNo Permission.");
@@ -32,7 +30,7 @@ public class SitCommand implements CommandExecutor {
             return true;
         }
 
-        SitUtil.sit(player, player.getLocation().add(0, -0.8, 0));
+        SitUtil.sit(player, player.getLocation().add(0, -0.7, 0));
         String sitting = Main.getInstance().getConfig().getString("messages.now-sitting" , "&aYou are now sitting.");
         player.sendMessage(formatColors(sitting));
 

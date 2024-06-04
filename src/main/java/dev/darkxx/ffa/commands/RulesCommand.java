@@ -27,7 +27,7 @@ public class RulesCommand implements CommandExecutor {
         }
         Player player = (Player) sender;
 
-        if (!config.contains("rules")) {
+        if (!config.contains("messages.rules.format")) {
             player.sendMessage(formatColors("&cNo rules are configured."));
             return true;
         }
