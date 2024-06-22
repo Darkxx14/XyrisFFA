@@ -13,7 +13,9 @@ StreakLose:
   - " "
 
 # Gameplay settings
-chat-format: "%luckperms_prefix%&7%player%: &f%message%"
+chat-formatter:
+  enabled: true
+  format: "&7%player%: &f%message%"
 armorStandBlocking: true
 heal_on_kill: true
 disableDeathDrops: true

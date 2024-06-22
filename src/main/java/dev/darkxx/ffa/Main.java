@@ -26,6 +26,7 @@ import dev.darkxx.ffa.settings.OldDamageTilt;
 import dev.darkxx.ffa.spawnitems.Items;
 import dev.darkxx.ffa.stats.Stats;
 import dev.darkxx.ffa.expansion.Placeholders;
+import dev.darkxx.ffa.stats.StatsManager;
 import dev.darkxx.ffa.tasks.ClipboardCleaner;
 import dev.darkxx.ffa.tasks.UpdateTask;
 import dev.darkxx.ffa.utils.MiscListener;
@@ -69,10 +70,31 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        DatabaseManager.disconnect();
+        Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&7Saving data..."));
+
+        try {
+            StatsManager.save();
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&cFailed to save stats " + e.getMessage()));
+            e.printStackTrace();
+        }
+
+        try {
+            DatabaseManager.disconnect();
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&cFailed to disconnect from database " + e.getMessage()));
+            e.printStackTrace();
+        }
+
         HandlerList.unregisterAll(this);
         getServer().getScheduler().cancelTasks(this);
-        RegenerationImpl.saveAll();
+
+        try {
+            RegenerationImpl.saveAll();
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&cFailed to save regeneration data " + e.getMessage()));
+            e.printStackTrace();
+        }
     }
 
     private void PlaceholderAPI() {

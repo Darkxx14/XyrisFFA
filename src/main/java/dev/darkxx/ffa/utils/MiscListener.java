@@ -4,6 +4,7 @@ import dev.darkxx.ffa.Main;
 import dev.darkxx.ffa.api.events.QuickRespawnEvent;
 import dev.darkxx.ffa.commands.PingCommand;
 import dev.darkxx.ffa.settings.SettingsManager;
+import dev.darkxx.ffa.stats.StatsManager;
 import dev.darkxx.ffa.tasks.UpdateTask;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
@@ -203,6 +204,7 @@ public class MiscListener implements Listener {
         });
         String joinMsg = Main.getInstance().getConfig().getString("join-message", "&7%player_name% Joined.");
         e.setJoinMessage(formatColors(PlaceholderAPI.setPlaceholders(player, joinMsg)));
+        StatsManager.load(player.getUniqueId());
     }
 
     @EventHandler
@@ -214,8 +216,8 @@ public class MiscListener implements Listener {
 
     @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent e) {
-        Bukkit.getScheduler().runTaskAsynchronously(main, () -> {
-            Player player = e.getPlayer();
+        Player player = e.getPlayer();
+        Bukkit.getScheduler().runTask(main, () -> {
             if (healthBarEnabled && !isWorldDisabled(player.getWorld())) {
                 updateHealthBar(player);
             } else {
@@ -226,7 +228,6 @@ public class MiscListener implements Listener {
 
     private void createHealthBar() {
         ScoreboardManager manager = Bukkit.getScoreboardManager();
-        assert manager != null;
         board = manager.getNewScoreboard();
 
         String displayName = formatColors(healthBarDisplayNameFormat);
@@ -238,7 +239,7 @@ public class MiscListener implements Listener {
     }
 
     private void updateHealthBar(Player player) {
-        Bukkit.getScheduler().runTaskAsynchronously(main, () -> {
+        Bukkit.getScheduler().runTask(main, () -> {
             if (isWorldDisabled(player.getWorld())) {
                 player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
             } else {
@@ -253,20 +254,22 @@ public class MiscListener implements Listener {
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {
-        Player player = e.getPlayer();
-        String message = e.getMessage();
+        if (Main.getInstance().getConfig().getBoolean("chat-formatter.enabled")) {
+            Player player = e.getPlayer();
+            String message = e.getMessage();
 
-        String format = Main.getInstance().getConfig().getString("chat-format");
-        String formatMsg = PlaceholderAPI.setPlaceholders(player, format)
-                .replace("%message%", message)
-                .replace("%player%", player.getName());
-        e.setFormat(formatColors(formatMsg));
+            String format = Main.getInstance().getConfig().getString("chat-formatter.format");
+            String formatMsg = PlaceholderAPI.setPlaceholders(player, format)
+                    .replace("%message%", message)
+                    .replace("%player%", player.getName());
+            e.setFormat(formatColors(formatMsg));
 
-        for (Player recipient : Bukkit.getOnlinePlayers()) {
-            String playerName = recipient.getName();
-            if (message.contains(playerName)) {
-                if (SettingsManager.hasEnabledSetting(recipient, "mentionSound")) {
-                    recipient.playSound(recipient.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1.0f, 1.0f);
+            for (Player recipient : Bukkit.getOnlinePlayers()) {
+                String playerName = recipient.getName();
+                if (message.contains(playerName)) {
+                    if (SettingsManager.hasEnabledSetting(recipient, "mentionSound")) {
+                        recipient.playSound(recipient.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1.0f, 1.0f);
+                    }
                 }
             }
         }
@@ -314,13 +317,11 @@ public class MiscListener implements Listener {
 
     @EventHandler
     public void onPlayerSneak(PlayerToggleSneakEvent e) {
-        Bukkit.getScheduler().runTaskAsynchronously(main, () -> {
-            Player player = e.getPlayer();
-            if (e.isSneaking()) {
-                if (SitUtil.isSitting(player)) {
-                    SitUtil.standup(player);
-                }
+        Player player = e.getPlayer();
+        if (e.isSneaking()) {
+            if (SitUtil.isSitting(player)) {
+                SitUtil.standup(player);
             }
-        });
+        }
     }
 }

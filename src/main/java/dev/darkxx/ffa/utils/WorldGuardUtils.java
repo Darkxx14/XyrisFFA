@@ -51,6 +51,25 @@ public class WorldGuardUtils {
     }
 
     /**
+     * Checks if a player is inside a specified WorldGuard region.
+     *
+     * @param player the player to check
+     * @param regionName the name of the WorldGuard region
+     * @return true if the player is inside the specified region, false otherwise
+     */
+    public static boolean isinRegion(Player player, String regionName) {
+        RegionContainer regionContainer = WorldGuard.getInstance().getPlatform().getRegionContainer();
+        RegionQuery query = regionContainer.createQuery();
+        com.sk89q.worldedit.util.Location playerLocation = BukkitAdapter.adapt(player.getLocation());
+        for (ProtectedRegion region : query.getApplicableRegions(playerLocation).getRegions()) {
+            if (region.getId().equalsIgnoreCase(regionName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Checks if a given arena is considered busy based on the number of players inside.
      *
      * @param regionName the name of the WorldGuard region representing the arena

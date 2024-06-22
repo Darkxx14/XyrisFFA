@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "dev.darkxx"
-version = "1.0.0"
+version = "1.0.3"
 description = "FFA"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
