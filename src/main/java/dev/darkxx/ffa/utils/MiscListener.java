@@ -217,13 +217,11 @@ public class MiscListener implements Listener {
     @EventHandler
     public void onPlayerChangeWorld(PlayerChangedWorldEvent e) {
         Player player = e.getPlayer();
-        Bukkit.getScheduler().runTask(main, () -> {
-            if (healthBarEnabled && !isWorldDisabled(player.getWorld())) {
-                updateHealthBar(player);
-            } else {
-                player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
-            }
-        });
+        if (healthBarEnabled && !isWorldDisabled(player.getWorld())) {
+            updateHealthBar(player);
+        } else {
+            player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+        }
     }
 
     private void createHealthBar() {

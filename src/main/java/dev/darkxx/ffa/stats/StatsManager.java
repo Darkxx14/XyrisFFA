@@ -112,6 +112,7 @@ public class StatsManager {
         } catch (SQLException e) {
             handleSQLException("Failed to load stats for player " + playerUUID, e);
         }
+        cache.put(playerUUID, stats);
         return stats;
     }
 
