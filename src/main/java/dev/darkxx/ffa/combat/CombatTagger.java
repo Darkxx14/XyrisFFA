@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -54,16 +55,14 @@ public class CombatTagger implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerDamage(EntityDamageByEntityEvent event) {
-        if (event.isCancelled() || !(event.getEntity() instanceof Player) || !(event.getDamager() instanceof Player))
-            return;
-
-        Player attacker = (Player) event.getDamager();
-        Player victim = (Player) event.getEntity();
-
-
-        startCombat(attacker, victim);
+        if (event.isCancelled()) return;
+        if (event.getEntity() instanceof Player && event.getDamager() instanceof Player) {
+            Player attacker = (Player) event.getDamager();
+            Player victim = (Player) event.getEntity();
+            startCombat(attacker, victim);
+        }
     }
 
     @EventHandler
