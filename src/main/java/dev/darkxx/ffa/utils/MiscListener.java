@@ -6,6 +6,7 @@ import dev.darkxx.ffa.commands.PingCommand;
 import dev.darkxx.ffa.settings.SettingsManager;
 import dev.darkxx.ffa.stats.StatsManager;
 import dev.darkxx.ffa.tasks.UpdateTask;
+import dev.darkxx.xyriskits.XyrisKits;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -110,7 +111,12 @@ public class MiscListener implements Listener {
 
         Player player = e.getPlayer();
         String playerName = player.getName();
-        String kit = getLastKit(player);
+        String kit;
+        if (Bukkit.getServer().getPluginManager().isPluginEnabled("XyrisKits")) {
+            kit = Main.getInstance().getXyrisKitsAPI().getLastKit(player);
+        } else {
+            kit = getLastKit(player);
+        }
         String arena = getLastArena(player);
         QuickRespawnEvent onQuickR = new QuickRespawnEvent(player, item, arena, kit);
         Bukkit.getServer().getPluginManager().callEvent(onQuickR);
@@ -120,7 +126,12 @@ public class MiscListener implements Listener {
         }
 
         if (!kit.equals("none") && !arena.equals("none")) {
-            String kitCmd = "ffa kits give " + playerName + " " + kit;
+            String kitCmd;
+            if (Bukkit.getServer().getPluginManager().isPluginEnabled("XyrisKits")) {
+                kitCmd = "xyriskits:kits give " + playerName + " " + kit;
+            } else {
+                kitCmd = "ffa kits give " + playerName + " " + kit;
+            }
             String arenaCmd = "ffa arenas warp " + playerName + " " + arena;
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), kitCmd);
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), arenaCmd);

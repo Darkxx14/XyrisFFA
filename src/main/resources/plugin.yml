@@ -6,6 +6,7 @@ softdepend:
   - PlaceholderAPI
   - ProtocolLib
   - FastAsyncWorldEdit
+  - XyrisKits
 authors:
   - Darkxx
   - XyrisPlugins

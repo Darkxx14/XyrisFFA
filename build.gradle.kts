@@ -43,6 +43,7 @@ dependencies {
     compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.8")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Core:2.7.0")
     compileOnly("com.fastasyncworldedit:FastAsyncWorldEdit-Bukkit:2.7.0")
+    compileOnly("dev.darkxx:XyrisKits:2.0.6")
 }
 
 tasks.build {

@@ -2,6 +2,8 @@ package dev.darkxx.ffa.arenas.coolarenas;
 
 import dev.darkxx.ffa.Main;
 import dev.darkxx.ffa.kits.KitManager;
+import dev.darkxx.xyriskits.XyrisKits;
+import dev.darkxx.xyriskits.api.KitsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -17,6 +19,7 @@ import java.util.List;
 import static dev.darkxx.ffa.Main.formatColors;
 import static dev.darkxx.ffa.Main.prefix;
 import static dev.darkxx.ffa.arenas.ArenaManager.lastArena;
+import static dev.darkxx.ffa.kits.Kits.getLastKit;
 
 public class CoolArenaManager {
     private static final Main main;
@@ -58,10 +61,6 @@ public class CoolArenaManager {
         config.set("location.z", location.getZ());
         config.set("location.pitch", location.getPitch());
         config.set("location.yaw", location.getYaw());
-        if (!KitManager.getKitNames().contains(kitName)) {
-            player.sendMessage(formatColors(prefix + "&7The specified kit does not exist."));
-            return;
-        }
         config.set("kit", kitName);
         try {
             config.save(arenaFile);
@@ -127,7 +126,13 @@ public class CoolArenaManager {
                     lastArena.put(targetPlayer, arenaName);
                     if (config.contains("kit")) {
                         String kitName = config.getString("kit");
-                        KitManager.giveKit(targetPlayer, kitName);
+
+                        if (Bukkit.getServer().getPluginManager().isPluginEnabled("XyrisKits")) {
+                            Main.getInstance().getXyrisKitsAPI().giveKit(targetPlayer, kitName);
+                        } else {
+                            KitManager.giveKit(targetPlayer, kitName);
+                        }
+
                     }
                     sender.sendMessage(formatColors(prefix + "&7Warped " + targetPlayer.getName() + " to cool arena " + arenaName));
                 }

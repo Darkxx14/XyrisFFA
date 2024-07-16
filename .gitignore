@@ -30,3 +30,4 @@ replay_pid*
 .gradle
 ..gradle
 output
+src/main/java/dev/darkxx/ffa/guilds

@@ -135,6 +135,10 @@ public class Commands implements CommandExecutor, TabCompleter {
                 break;
             // Kits Command
             case "kits":
+                if (Bukkit.getServer().getPluginManager().isPluginEnabled("XyrisKits")) {
+                    sender.sendMessage(formatColors(prefix + "&7Hooked into XyrisKits, Please use the command /kits to manage the kits."));
+                    return true;
+                }
                 if (args.length < 2) {
                     KitManager.sendInvalidCommandMessage(sender);
                     return true;
@@ -365,7 +369,11 @@ public class Commands implements CommandExecutor, TabCompleter {
             return completions;
         } else if (args.length == 4 && args[0].equalsIgnoreCase("coolarenas") && args[1].equalsIgnoreCase("create")) {
             List<String> completions = new ArrayList<>();
-            completions.addAll(KitManager.getKitNames());
+            if (Bukkit.getServer().getPluginManager().isPluginEnabled("XyrisKits")) {
+                completions.addAll(Main.getInstance().getXyrisKitsAPI().listKits());
+            } else {
+                completions.addAll(KitManager.getKitNames());
+            }
             return completions;
         } else if (args.length == 3 && args[0].equalsIgnoreCase("coolarenas") && args[1].equalsIgnoreCase("warp")) {
             List<String> completions = new ArrayList<>();
