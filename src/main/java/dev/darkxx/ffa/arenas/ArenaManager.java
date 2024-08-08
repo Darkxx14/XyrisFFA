@@ -125,7 +125,10 @@ public class ArenaManager {
                     if (!Warpevent.isCancelled()) {
                         targetPlayer.teleport(location);
                         lastArena.put(targetPlayer, arenaName);
-                        sender.sendMessage(formatColors(prefix + "&7Warped " + targetPlayer.getName() + " to arena " + arenaName));
+                        String warped = main.getConfig().getString("messages.warped_to_arena");
+                        if (!"NONE".equals(warped)) {
+                            sender.sendMessage(formatColors(prefix + "&7Warped " + targetPlayer.getName() + " to arena " + arenaName));
+                        }
                     }
                 } else {
                     sender.sendMessage(formatColors(prefix + "&7Arena not found " + arenaName));

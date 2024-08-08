@@ -52,6 +52,18 @@ commands:
     permission: ffa.coolarena.use
     aliases:
       - ca
+        
+  toggleautogg:
+    permission: ffa.settings.toggleautogg
+  toggledirectionaldamagetilt:
+    permission: ffa.settings.toggledirectionaldamagetilt
+  togglementionsound:
+    permission: ffa.settings.togglementionsound
+  toggleprivatemessages:
+    permission: ffa.settings.toggleprivatemessages
+  togglequickrespawn:
+    permission: ffa.settings.togglequickrespawn
+
 permissions:
   ffa.admin:
     default: op

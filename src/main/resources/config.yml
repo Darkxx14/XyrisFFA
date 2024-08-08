@@ -28,8 +28,11 @@ quit-message: "&7%player_name% left."
 launchpad:
   force: 1.8
 deathMessages:
-  - "&c%victim% &7was defeated by &a%attacker% &7(&c%attacker_health%❤&7)"
-  - "&7You can add more here!"
+  messages:
+    - "&c%victim% &7was defeated by &a%attacker% &7(&c%attacker_health%❤&7)"
+    - "&7You can add more here!"
+  disabledWorlds:
+    - "example_world"
 
 # Quick Respawn settings
 quick-respawn:
@@ -84,6 +87,9 @@ messages:
   nick-blacklisted: "&cThis nickname contains blacklisted words."
   nick-changed: "&aYour nickname has been set to %nickname%"
   nick-cleared: "&aYour nickname has been cleared."
+  setting_toggle: "&a{setting_name} is now {setting_status}"
+  kit_gave: "NONE"
+  warped_to_arena: "NONE"
   message_format:
     sender: "&7[To %recipient%] &b%message%"
     recipient: "&7[From %sender%] &b%message%"

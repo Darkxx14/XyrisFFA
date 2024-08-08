@@ -18,7 +18,7 @@ public class SettingsCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        SettingsMenu.createSettingsMenu(player, Main.getInstance()).open(player);
+        SettingsMenu.menu(player).open(player);
 
         return true;
     }

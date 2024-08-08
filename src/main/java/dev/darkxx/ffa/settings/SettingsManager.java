@@ -1,6 +1,7 @@
 package dev.darkxx.ffa.settings;
 
 import dev.darkxx.ffa.Main;
+import dev.darkxx.ffa.settings.menu.SettingsMenu;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -102,7 +103,15 @@ public class SettingsManager {
 
     public static String getSettingStatus(Player player, String settingName) {
         boolean isEnabled = hasEnabledSetting(player, settingName);
-        return isEnabled ? "§aENABLED" : "§cDISABLED";
+        String enabled = SettingsMenu.getSettingsConfig().getString("menu.placeholders.enabled");
+        String disabled = SettingsMenu.getSettingsConfig().getString("menu.placeholders.disabled");
+
+        return isEnabled ? Main.formatColors(enabled) : Main.formatColors(disabled);
+    }
+
+    public static String getUnformattedSettingStatus(Player player, String settingName) {
+        boolean isEnabled = hasEnabledSetting(player, settingName);
+        return isEnabled ? "Enabled" : "Disabled";
     }
 
     private static void saveConfig() {

@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -35,12 +36,13 @@ public class Items {
     }
 
     public static void giveSpawnItems(Player player) {
-        Set<String> itemList = getSpawnItemsConfig().getConfigurationSection("items").getKeys(false);
-        if (itemList == null || itemList.isEmpty()) {
-            player.sendMessage(formatColors(prefix + ChatColor.GRAY + "No items configured in the plugin!"));
+        ConfigurationSection itemsSection = getSpawnItemsConfig().getConfigurationSection("items");
+        if (itemsSection == null || itemsSection.getKeys(false).isEmpty()) {
+            // no items configured, disable spawn items
             return;
         }
 
+        Set<String> itemList = itemsSection.getKeys(false);
         SpawnItemsGiveEvent spawnItemGevent = new SpawnItemsGiveEvent(player);
         Bukkit.getServer().getPluginManager().callEvent(spawnItemGevent);
 

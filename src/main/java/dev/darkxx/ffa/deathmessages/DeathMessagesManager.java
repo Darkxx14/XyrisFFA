@@ -17,30 +17,47 @@ import static dev.darkxx.ffa.Main.formatColors;
 
 public class DeathMessagesManager implements Listener {
     private List<String> deathMessages;
+    private List<String> disabledWorlds;
     private FileConfiguration config;
     private Main main;
 
     public DeathMessagesManager(Main main) {
         this.main = main;
         deathMessages = new ArrayList<>();
+        disabledWorlds = new ArrayList<>();
         loadConfig(main);
         Bukkit.getPluginManager().registerEvents(this, main);
     }
 
     private void loadConfig(JavaPlugin plugin) {
         config = plugin.getConfig();
-        if (config.isList("deathMessages")) {
-            deathMessages = config.getStringList("deathMessages");
+        if (config.isList("deathMessages.messages")) {
+            deathMessages = config.getStringList("deathMessages.messages");
         } else {
             deathMessages.add("&c%victim% &7was defeated by &a%attacker% &8(%attacker_health% ❤)");
-            config.set("deathMessages", deathMessages);
-            plugin.saveConfig();
+            deathMessages.add("&7You can add more here!");
+            config.set("deathMessages.messages", deathMessages);
         }
+
+        if (config.isList("deathMessages.disabledWorlds")) {
+            disabledWorlds = config.getStringList("deathMessages.disabledWorlds");
+        } else {
+            disabledWorlds.add("example_world");
+            config.set("deathMessages.disabledWorlds", disabledWorlds);
+        }
+
+        plugin.saveConfig();
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player victim = event.getEntity();
+        String worldName = victim.getWorld().getName();
+
+        if (disabledWorlds.contains(worldName)) {
+            return;
+        }
+
         Player attacker = event.getEntity().getKiller();
         String attackerName = (attacker != null) ? attacker.getName() : "Unknown";
         String victimName = (victim != null) ? victim.getName() : "Unknown";

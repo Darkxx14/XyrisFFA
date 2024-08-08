@@ -1,0 +1,47 @@
+menu:
+  title: "Settings"
+  placeholders:
+    enabled: "&aEnabled"
+    disabled: "&cDisabled"
+
+  OldDamageTilt:
+    name: "&eOld Damage Tilt &7(1.19.4+)"
+    material: NETHERITE_SWORD
+    slot: 11
+    lore:
+      - "&7Disable the new directional damage tilt that"
+      - "&7was removed in 1.3.1, but added back in 1.19.4"
+      - "  "
+      - "&7Status: %status%"
+  privateMessages:
+    name: "&ePrivate Messages"
+    material: WRITABLE_BOOK
+    slot: 12
+    lore:
+      - "&7Toggle your private messages (PM)"
+      - "  "
+      - "&7Status: %status%"
+  autoGG:
+    name: "&eAuto GG"
+    material: SKELETON_SKULL
+    slot: 13
+    lore:
+      - "&7Send a message 'gg' automatically when killed someone"
+      - "  "
+      - "&7Status: %status%"
+  mentionSound:
+    name: "&eMention Sound"
+    material: ENDER_PEARL
+    slot: 14
+    lore:
+      - "&7Toggle the sound when you are mentioned in the chat"
+      - "  "
+      - "&7Status: %status%"
+  toggleQuickRespawn:
+    name: "&eQuick Respawn Item"
+    material: FEATHER
+    slot: 15
+    lore:
+      - "&7Toggle to get a quick respawn item on death"
+      - "  "
+      - "&7Status: %status%"

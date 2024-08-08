@@ -14,6 +14,7 @@ import dev.darkxx.ffa.commands.BroadcastCommand;
 import dev.darkxx.ffa.commands.StatsCommand;
 import dev.darkxx.ffa.commands.ReplyCommand;
 import dev.darkxx.ffa.commands.CoolArenaCommand;
+import dev.darkxx.ffa.commands.settings.*;
 import dev.darkxx.ffa.deathmessages.DeathMessagesManager;
 import dev.darkxx.ffa.commands.FlyCommand;
 import dev.darkxx.ffa.kits.KitManager;
@@ -36,6 +37,7 @@ import dev.darkxx.xyriskits.utils.config.ConfigManager;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -74,6 +76,18 @@ public final class Main extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&7XyrisKits detected. &7Enabled support for &bXyrisKits &7plugin."));
             ConfigManager configManager = ConfigManager.get(this);
             kitsAPI = new dev.darkxx.xyriskits.managers.KitManager(configManager);
+        } else {
+            kitsAPI = null;
+        }
+
+        try {
+            File configFile = new File(Main.getInstance().getDataFolder(), "menus/settings_menu.yml");
+            if (!configFile.exists()) {
+                configFile.getParentFile().mkdirs();
+                Main.getInstance().saveResource("menus/settings_menu.yml", false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -82,7 +96,7 @@ public final class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&7Saving data..."));
 
         try {
-            StatsManager.save();
+            StatsManager.saveAll();
         } catch (Exception e) {
             Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&cFailed to save stats " + e.getMessage()));
             e.printStackTrace();
@@ -194,6 +208,12 @@ public final class Main extends JavaPlugin {
         getCommand("ping").setExecutor(new PingCommand());
         getCommand("nickname").setExecutor(new NickCommand(this));
         getCommand("settings").setExecutor(new SettingsCommand());
+
+        getCommand("toggleautogg").setExecutor(new ToggleAutoGGCommand());
+        getCommand("toggledirectionaldamagetilt").setExecutor(new ToggleDirectionalDamageTiltCommand());
+        getCommand("togglementionsound").setExecutor(new ToggleMentionSoundCommand());
+        getCommand("toggleprivatemessages").setExecutor(new TogglePrivateMessagesCommand());
+        getCommand("togglequickrespawn").setExecutor(new ToggleQuickRespawnCommand());
     }
 
     public static Main getInstance() {

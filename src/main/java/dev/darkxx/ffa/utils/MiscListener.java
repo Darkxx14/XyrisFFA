@@ -223,6 +223,7 @@ public class MiscListener implements Listener {
         Player player = e.getPlayer();
         String quitMsg = Main.getInstance().getConfig().getString("quit-message", "&7%player_name% Left.");
         e.setQuitMessage(formatColors(PlaceholderAPI.setPlaceholders(player, quitMsg)));
+        StatsManager.save(player.getUniqueId());
     }
 
     @EventHandler
