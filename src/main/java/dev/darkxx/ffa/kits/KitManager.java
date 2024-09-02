@@ -49,12 +49,10 @@ public class KitManager {
             if (sender instanceof Player) {
                 Player player = (Player) sender;
 
-                // Save inventory
                 kits.set("inventory", player.getInventory().getContents());
                 kits.set("armor", player.getInventory().getArmorContents());
                 kits.set("offhand", player.getInventory().getItemInOffHand());
 
-                // Save active potion effects
                 Collection<PotionEffect> activeEffects = player.getActivePotionEffects();
                 for (PotionEffect effect : activeEffects) {
                     kits.set("effects." + effect.getType().getName() + ".duration", effect.getDuration());

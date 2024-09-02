@@ -126,7 +126,8 @@ public class ArenaManager {
                         lastArena.put(playerName, arenaName);
                         String warped = main.getConfig().getString("messages.warped_to_arena");
                         if (sender != null && !"NONE".equals(warped)) {
-                            sender.sendMessage(formatColors(prefix + "&7Warped " + playerName.getName() + " to arena " + arenaName));
+                            assert warped != null;
+                            sender.sendMessage(formatColors(prefix + warped.replace("%player%", playerName.getName()).replace("%arena%", arenaName)));
                         }
                     }
                 } else if (sender != null) {

@@ -182,7 +182,8 @@ public class Commands implements CommandExecutor, TabCompleter {
                         KitManager.giveKit(targetPlayer, kitToGive);
                         String kitGave = main.getConfig().getString("messages.kit_gave");
                         if (!"NONE".equals(kitGave)) {
-                            sender.sendMessage(formatColors(prefix + "&7Kit " + kitToGive + " has been given to " + p + "."));
+                            assert kitGave != null;
+                            sender.sendMessage(formatColors(prefix + kitGave.replace("%player%", targetPlayer.getName()).replace("%kit%", kitToGive)));
                         }
                         break;
                 }

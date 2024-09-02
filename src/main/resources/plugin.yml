@@ -1,5 +1,5 @@
 name: FFA
-version: '1.0.3'
+version: '1.0.4'
 main: dev.darkxx.ffa.Main
 api-version: '1.19'
 softdepend:
