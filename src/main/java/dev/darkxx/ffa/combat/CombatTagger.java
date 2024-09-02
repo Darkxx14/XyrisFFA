@@ -146,7 +146,7 @@ public class CombatTagger implements Listener {
             List<String> whitelistedCommands = config.getStringList("combat-tagger.whitelisted_commands");
 
             if (!whitelistedCommands.contains(command)) {
-                String disableCommands = config.getString("disable-commands-message", "&7You cannot use commands while in combat!");
+                String disableCommands = config.getString("combat-tagger.disable-commands-message", "&7You cannot use commands while in combat!");
                 player.sendMessage(formatColors(disableCommands));
                 event.setCancelled(true);
             }

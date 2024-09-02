@@ -2,11 +2,13 @@ package dev.darkxx.ffa.utils;
 
 import dev.darkxx.ffa.Main;
 import dev.darkxx.ffa.api.events.QuickRespawnEvent;
+import dev.darkxx.ffa.arenas.ArenaManager;
+import dev.darkxx.ffa.arenas.Arenas;
 import dev.darkxx.ffa.commands.PingCommand;
 import dev.darkxx.ffa.settings.SettingsManager;
 import dev.darkxx.ffa.stats.StatsManager;
 import dev.darkxx.ffa.tasks.UpdateTask;
-import dev.darkxx.xyriskits.XyrisKits;
+import dev.darkxx.xyriskits.api.XyrisKitsAPI;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -113,7 +115,7 @@ public class MiscListener implements Listener {
         String playerName = player.getName();
         String kit;
         if (Bukkit.getServer().getPluginManager().isPluginEnabled("XyrisKits")) {
-            kit = Main.getInstance().getXyrisKitsAPI().getLastKit(player);
+            kit = XyrisKitsAPI.getKitsAPI().getLastKit(player);
         } else {
             kit = getLastKit(player);
         }
@@ -132,9 +134,8 @@ public class MiscListener implements Listener {
             } else {
                 kitCmd = "ffa kits give " + playerName + " " + kit;
             }
-            String arenaCmd = "ffa arenas warp " + playerName + " " + arena;
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), kitCmd);
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), arenaCmd);
+            ArenaManager.warp(null, player, arena);
 
             String messageType = Main.getInstance().getConfig().getString("quick-respawn.message-type", "action bar");
             String message = Main.getInstance().getConfig().getString("quick-respawn.message", "&aTeleported to your last location.");
@@ -313,6 +314,9 @@ public class MiscListener implements Listener {
         }
         if (main.getConfig().getBoolean("disableDeathDrops")) {
             e.getDrops().clear();
+        }
+        if (main.getConfig().getBoolean("heal_on_kill")) {
+            heal(player);
         }
     }
 

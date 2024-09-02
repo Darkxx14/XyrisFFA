@@ -47,7 +47,7 @@ public class SettingsMenu extends GuiBuilder {
             return new GuiBuilder(3 * 9, formatColors(settingsConfig.getString("menu.title")));
         }
 
-        GuiBuilder inventory = new GuiBuilder(3 * 9, formatColors("Settings"));
+        GuiBuilder inventory = new GuiBuilder(3 * 9, formatColors(settingsConfig.getString("menu.title")));
 
         settingsConfig.getConfigurationSection("menu").getKeys(false).forEach(settingKey -> {
             String name = settingsConfig.getString("menu." + settingKey + ".name");

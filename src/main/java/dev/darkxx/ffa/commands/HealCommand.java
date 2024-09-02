@@ -27,7 +27,6 @@ public class HealCommand implements CommandExecutor {
                 player.setHealth(player.getMaxHealth());
                 player.setFoodLevel(20);
                 player.setSaturation(0);
-                player.sendMessage(formatColors("&aYou have been healed."));
                 return true;
             }
 
@@ -40,7 +39,6 @@ public class HealCommand implements CommandExecutor {
             targetPlayer.setHealth(targetPlayer.getMaxHealth());
             targetPlayer.setFoodLevel(20);
             player.setSaturation(0);
-            player.sendMessage(formatColors("&a" + targetPlayer.getName() + " has been healed."));
             return true;
         } else {
             if (args.length == 0) {
@@ -58,7 +56,6 @@ public class HealCommand implements CommandExecutor {
             targetPlayer.setHealth(targetPlayer.getMaxHealth());
             targetPlayer.setFoodLevel(20);
             targetPlayer.setSaturation(0);
-            sender.sendMessage(formatColors("&a" + targetPlayer.getName() + " has been healed."));
             return true;
         }
     }

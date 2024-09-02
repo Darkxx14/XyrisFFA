@@ -7,6 +7,7 @@ import dev.darkxx.ffa.kits.Kits;
 import dev.darkxx.ffa.spawnitems.Items;
 import dev.darkxx.ffa.stats.edit.EditStats;
 import dev.darkxx.ffa.kits.KitManager;
+import dev.darkxx.xyriskits.api.XyrisKitsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -225,8 +226,9 @@ public class Commands implements CommandExecutor, TabCompleter {
                             return true;
                         }
                         String tpTarget = args[2];
+                        Player tpTargetPlayer = Bukkit.getPlayer(tpTarget);
                         String targetArena = args[3];
-                        ArenaManager.warp(sender, tpTarget, targetArena);
+                        ArenaManager.warp(sender, tpTargetPlayer, targetArena);
                         break;
                     default:
                         ArenaManager.sendInvalidCommandMessage(sender);
@@ -373,7 +375,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         } else if (args.length == 4 && args[0].equalsIgnoreCase("coolarenas") && args[1].equalsIgnoreCase("create")) {
             List<String> completions = new ArrayList<>();
             if (Bukkit.getServer().getPluginManager().isPluginEnabled("XyrisKits")) {
-                completions.addAll(Main.getInstance().getXyrisKitsAPI().listKits());
+                completions.addAll(XyrisKitsAPI.getKitsAPI().listKits());
             } else {
                 completions.addAll(KitManager.getKitNames());
             }

@@ -60,10 +60,10 @@ public class IArenas {
      * Warps the specified player to the specified arena.
      *
      * @param sender    The command sender initiating the warp.
-     * @param playerName The name of the player to warp.
+     * @param player The name of the player to warp.
      * @param arenaName The name of the arena to warp to.
      */
-    public static void warp(CommandSender sender, String playerName, String arenaName) {
-        ArenaManager.warp(sender, playerName, arenaName);
+    public static void warp(CommandSender sender, Player player, String arenaName) {
+        ArenaManager.warp(sender, player, arenaName);
     }
 }

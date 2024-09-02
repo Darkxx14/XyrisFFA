@@ -2,8 +2,7 @@ package dev.darkxx.ffa.arenas.coolarenas;
 
 import dev.darkxx.ffa.Main;
 import dev.darkxx.ffa.kits.KitManager;
-import dev.darkxx.xyriskits.XyrisKits;
-import dev.darkxx.xyriskits.api.KitsAPI;
+import dev.darkxx.xyriskits.api.XyrisKitsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -38,7 +37,7 @@ public class CoolArenaManager {
         sender.sendMessage("\n");
         sender.sendMessage(formatColors("&b&lFFA &8| &7Invalid Command"));
         sender.sendMessage("\n");
-        sender.sendMessage(formatColors("&b• &7/ffa coolarenas create <arenaName>"));
+        sender.sendMessage(formatColors("&b• &7/ffa coolarenas create <arenaName> <kitName>"));
         sender.sendMessage(formatColors("&b• &7/ffa coolarenas delete <arenaName>"));
         sender.sendMessage(formatColors("&b• &7/ffa coolarenas warp <Player> <arenaName>"));
         sender.sendMessage(formatColors("&b• &7/ffa coolarenas list"));
@@ -128,7 +127,8 @@ public class CoolArenaManager {
                         String kitName = config.getString("kit");
 
                         if (Bukkit.getServer().getPluginManager().isPluginEnabled("XyrisKits")) {
-                            Main.getInstance().getXyrisKitsAPI().giveKit(targetPlayer, kitName);
+                            assert kitName != null;
+                            XyrisKitsAPI.getKitsAPI().giveKit(targetPlayer, kitName);
                         } else {
                             KitManager.giveKit(targetPlayer, kitName);
                         }

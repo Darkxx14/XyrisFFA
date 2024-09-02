@@ -32,8 +32,7 @@ import dev.darkxx.ffa.tasks.ClipboardCleaner;
 import dev.darkxx.ffa.tasks.UpdateTask;
 import dev.darkxx.ffa.utils.MiscListener;
 import dev.darkxx.ffa.utils.gui.GuiManager;
-import dev.darkxx.xyriskits.api.KitsAPI;
-import dev.darkxx.xyriskits.utils.config.ConfigManager;
+import dev.darkxx.xyriskits.api.XyrisKitsAPI;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -57,7 +56,6 @@ public final class Main extends JavaPlugin {
     private MessageCommand messageCommand;
     private static File kitsFolder;
     private CombatTagger combatTagger;
-    private KitsAPI kitsAPI;
 
     @Override
     public void onEnable() {
@@ -73,11 +71,8 @@ public final class Main extends JavaPlugin {
         Commands();
 
         if (getServer().getPluginManager().isPluginEnabled("XyrisKits")) {
+            XyrisKitsAPI.initialize();
             Bukkit.getConsoleSender().sendMessage(formatColors(prefix + "&7XyrisKits detected. &7Enabled support for &bXyrisKits &7plugin."));
-            ConfigManager configManager = ConfigManager.get(this);
-            kitsAPI = new dev.darkxx.xyriskits.managers.KitManager(configManager);
-        } else {
-            kitsAPI = null;
         }
 
         try {
@@ -241,9 +236,5 @@ public final class Main extends JavaPlugin {
             message = message.replace(colorCode, color.toString());
         }
         return message;
-    }
-
-    public KitsAPI getXyrisKitsAPI() {
-        return kitsAPI;
     }
 }

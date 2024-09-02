@@ -105,9 +105,8 @@ public class ArenaManager {
         }
     }
 
-    public static void warp(CommandSender sender, String playerName, String arenaName) {
-        Player targetPlayer = Bukkit.getPlayerExact(playerName);
-        if (targetPlayer != null) {
+    public static void warp(CommandSender sender, Player playerName, String arenaName) {
+        if (playerName != null) {
             File arenaFile = new File(arenasFolder, arenaName + ".yml");
             if (arenaFile.exists()) {
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(arenaFile);
@@ -120,22 +119,24 @@ public class ArenaManager {
                     float pitch = (float) config.getDouble("location.pitch");
                     float yaw = (float) config.getDouble("location.yaw");
                     Location location = new Location(world, x, y, z, yaw, pitch);
-                    PlayerWarpEvent Warpevent = new PlayerWarpEvent(sender, targetPlayer, location);
-                    Bukkit.getServer().getPluginManager().callEvent(Warpevent);
-                    if (!Warpevent.isCancelled()) {
-                        targetPlayer.teleport(location);
-                        lastArena.put(targetPlayer, arenaName);
+                    PlayerWarpEvent warpevent = new PlayerWarpEvent(sender, playerName, location);
+                    Bukkit.getServer().getPluginManager().callEvent(warpevent);
+                    if (!warpevent.isCancelled()) {
+                        playerName.teleport(location);
+                        lastArena.put(playerName, arenaName);
                         String warped = main.getConfig().getString("messages.warped_to_arena");
-                        if (!"NONE".equals(warped)) {
-                            sender.sendMessage(formatColors(prefix + "&7Warped " + targetPlayer.getName() + " to arena " + arenaName));
+                        if (sender != null && !"NONE".equals(warped)) {
+                            sender.sendMessage(formatColors(prefix + "&7Warped " + playerName.getName() + " to arena " + arenaName));
                         }
                     }
-                } else {
+                } else if (sender != null) {
                     sender.sendMessage(formatColors(prefix + "&7Arena not found " + arenaName));
                 }
-            } else {
-                sender.sendMessage(formatColors(prefix + "&7Player not found " + playerName));
+            } else if (sender != null) {
+                sender.sendMessage(formatColors(prefix + "&7Arena file not found: " + arenaName));
             }
+        } else if (sender != null) {
+            sender.sendMessage(formatColors(prefix + "&7Player not found: " + playerName));
         }
     }
 }
