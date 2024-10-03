@@ -18,6 +18,7 @@ import static dev.darkxx.ffa.Main.formatColors;
 public class DeathMessagesManager implements Listener {
     private List<String> deathMessages;
     private List<String> disabledWorlds;
+    private boolean disabled;
     private FileConfiguration config;
     private Main main;
 
@@ -25,13 +26,14 @@ public class DeathMessagesManager implements Listener {
         this.main = main;
         deathMessages = new ArrayList<>();
         disabledWorlds = new ArrayList<>();
+        disabled = false;
         loadConfig(main);
         Bukkit.getPluginManager().registerEvents(this, main);
     }
 
     private void loadConfig(JavaPlugin plugin) {
         config = plugin.getConfig();
-        if (config.getBoolean("deathMessages.disabled")) return;
+        disabled = config.getBoolean("deathMessages.disabled")
         if (config.isList("deathMessages.messages")) {
             deathMessages = config.getStringList("deathMessages.messages");
         } else {
@@ -54,6 +56,10 @@ public class DeathMessagesManager implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         Player victim = event.getEntity();
         String worldName = victim.getWorld().getName();
+
+        if (disabled) {
+            return;
+        }
 
         if (disabledWorlds.contains(worldName)) {
             return;
