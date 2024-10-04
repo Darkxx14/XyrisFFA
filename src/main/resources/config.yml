@@ -28,6 +28,7 @@ quit-message: "&7%player_name% left."
 launchpad:
   force: 1.8
 deathMessages:
+  disabled: false
   messages:
     - "&c%victim% &7was defeated by &a%attacker% &7(&c%attacker_health%❤&7)"
     - "&7You can add more here!"
